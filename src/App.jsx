@@ -229,7 +229,7 @@ const App = () => {
       />
     </main>
   ) : (
-     <main className={Styles.main_welcome_page}>
+    <main className={Styles.main_welcome_page}>
       <div className={Styles.overlay}></div>
       <section className={Styles.content}>
         <h1 className={Styles.heading}>Craft Your Perfect CV</h1>
@@ -244,8 +244,9 @@ const App = () => {
           <p>Customize fonts, structure & styling</p>
         </div>
         <button
-        onClick={() => setIsWelcomePage(!isWelcomePage)}
-        className={Styles.cta_btn}>
+          onClick={() => setIsWelcomePage(!isWelcomePage)}
+          className={Styles.cta_btn}
+        >
           Get started and build your standout CV today.
         </button>
       </section>

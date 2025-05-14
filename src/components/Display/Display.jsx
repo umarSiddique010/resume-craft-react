@@ -71,6 +71,8 @@ const handleDownloadPdf = async () => {
 
   pdf.save('Your-Resume-CV-Builder.pdf');
 };
+
+
  
   const templateArray = [
     <TemplateOne
