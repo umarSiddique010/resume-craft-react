@@ -1,0 +1,18 @@
+.tech_wrapper {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tech_wrapper > h3,
+.soft_wrapper > h3 {
+  color: #b82132;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+

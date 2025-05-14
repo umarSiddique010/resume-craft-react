@@ -1,0 +1,327 @@
+
+
+.templateTwo_section * {
+  color: #4c4c4c;
+}
+
+.templateTwo_section {
+  width: fit-content;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 415px 780px;
+  background-color: #f2f2f2;
+}
+
+.templateTwo_section a,
+.templateTwo_section span,
+.templateTwo_section address,
+.templateTwo_section h3,
+.templateTwo_section h4,
+.templateTwo_section h5,
+.templateTwo_section p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+
+.template_left_side hr {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  margin: 15px 0;
+}
+
+.template_right_side hr {
+  width: calc(100% + 20px);
+  height: 2px;
+  background-color: #c5c5c59f;
+  margin: 15px 0;
+}
+
+/* styling skill level bar  */
+.skill_level_bar {
+  width: 80%;
+  height: 6px;
+  background-color: #eeeeee8b;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.skill_level_bar div {
+  display: flex;
+  justify-content: flex-end;
+  transition: all 0.4s ease-in-out 0.01s;
+  align-items: center;
+}
+
+.skill_level_bar div::after {
+  content: ' ';
+  height: 20px;
+  width: 20px;
+  background-color: #066;
+  border: 5px solid #fff;
+  border-radius: 50%;
+}
+
+/* LEFT SIDE TEMPLATE  */
+.template_left_side {
+  grid-column: 1/2;
+  background-color: #066;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 12%;
+}
+
+/* rendering name container */
+
+.name_container h3 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/* rendering skills container */
+/* rendering language  */
+/* rendering website  */
+/* rendering interest & hobbies  */
+
+.skills_container,
+.skills_container > ul,
+.education_container,
+.education_container > ul .languages_container,
+.languages_container > ul,
+.websites_container,
+.interests_hobbies_container,
+.interests_hobbies_container > ul {
+  width: 100%;
+  height: fit-content;
+}
+
+.skills_container > h3,
+.education_container > h3,
+.languages_container > h3,
+.websites_container > h3,
+.interests_hobbies_container > h3 {
+  font-size: 1.9rem;
+  color: #fff;
+}
+
+.rendered_skill_list,
+.rendered_education_list,
+.rendered_language_list,
+.rendered_interests_hobbies_list {
+  width: 100%;
+  margin: 24px 20px;
+}
+
+.rendered_skill_list::marker,
+.rendered_education_list::marker,
+.rendered_language_list::marker,
+.rendered_interests_hobbies_list::marker {
+  color: #fff;
+}
+
+.rendered_skill_list > h4,
+.rendered_language_list > h4,
+.rendered_interests_hobbies_list {
+  color: #fff;
+  font-weight: 550;
+}
+
+.university_timeline,
+.rendered_degree_gpa_coursework {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.university_timeline h4,
+.rendered_degree_gpa_coursework h4 {
+  color: #fff;
+}
+
+.rendered_degree_gpa_coursework span {
+  color: #fff;
+  font-weight: 600;
+}
+
+.rendered_website_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.rendered_website_list a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.link_icon * {
+  color: #bcbcbc;
+}
+
+
+.link_icon {
+  fill: #fff;
+  font-size: 1.6rem;
+  margin-top: 5px;
+}
+
+.rendered_website_list a span:nth-child(2) {
+  color: #fff;
+  word-break: break-all;
+}
+
+/* RIGHT SIDE TEMPLATE */
+.template_right_side {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 5% 10%;
+}
+
+/*  styling right side  */
+
+.work_experiences_container,
+.work_experiences_container > ul,
+.projects_container,
+.projects_container > ul,
+.awards_container > ul,
+.certification_container,
+.certification_container > ul {
+  width: 100%;
+  height: fit-content;
+}
+
+.careerSummary_container > h3,
+.work_experiences_container > h3,
+.projects_container > h3,
+.awards_container > h3,
+.certification_container > h3 {
+  font-size: 1.9rem;
+  color: #333;
+}
+
+.rendered_work_experience_list,
+.rendered_projects_list,
+.rendered_awards_list,
+.rendered_certification_list {
+  width: 100%;
+  height: fit-content;
+  margin: 24px 20px 0;
+}
+
+.work_experiences_header,
+.project_links,
+.project_name_technology {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.company_name_experience,
+.award_name_year,
+.certification_name_timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.company_name_experience > h4,
+.project_name_technology > h4:first-child,
+.award_name_year > h4,
+.certification_name_timeline > h4 {
+  font-size: 1.4rem;
+}
+
+.job_title > h4,
+.project_name_technology > h4:nth-child(2),
+.certification_issuing_organization > h4 {
+  font-size: 1.25rem;
+  color: #286666;
+}
+
+.location > h4 {
+  font-size: 1.25rem;
+  margin: 10px 0;
+}
+
+.work_experiences_achievements,
+.project_description,
+.award_details,
+.certification_issuing_organization {
+  margin: 20px 0;
+}
+
+.project_links a span {
+  color: #0000e3;
+}
+
+
+.certification_credential > p,
+.certification_credential > a {
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.certification_credential > a > span {
+  color: #0000e3;
+  font-weight: 550;
+}
+
+.certification_credential > p > span {
+  font-weight: 550;
+  color: #d87093;
+}
+
+/* Styling profession, phone number, mail, and address */
+.profession_contact_container {
+  width: 100%;
+  height: fit-content;
+  padding: 5%;
+}
+
+.profession_contact_container > h3 {
+  font-size: 3rem;
+  color: #286666;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.profession_contact_container div:nth-child(2) {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.profession_contact_container div:nth-child(2) h4,
+.profession_contact_container div:nth-child(3) h4 {
+  color: #333;
+}
+
+.profession_contact_container div a,
+.profession_contact_container div h4 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  word-break: break-all;
+}
+
+.contact_icon {
+  fill: #286666;
+  font-size: 1.6rem;
+  margin-top: 5px;
+}
+
+.careerSummary_container > p {
+  color: #333;
+}
+

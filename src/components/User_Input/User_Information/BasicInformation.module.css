@@ -1,0 +1,34 @@
+.profilePic_btn {
+  height: max-content;
+  width: max-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background-color: #f7f7f7;
+  padding: 5px;
+  border: 0.5px solid #333;
+}
+
+.profilePic_btn label {
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+}
+
+.file_wrapper {
+  height: 120px;
+  width: 120px;
+  font-size: 0.9rem;
+  background-image: url('../../../assets/UserOutlineIcon.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.file_wrapper input {
+  display: none;
+}

@@ -1,0 +1,103 @@
+.user_input {
+  display: grid;
+  grid-template-rows: 75% 25%;
+  height: 100%;
+  width: 100%;
+  background-color: #e0e0e0;
+  overflow-y: auto;
+  flex-shrink: 0;
+  transition: all 0.7s ease-in-out 0.3s;
+}
+
+@media (min-width: 951px) {
+  .user_input {
+    grid-column: 1/2;
+  }
+}
+
+.user_input form {
+  grid-row: 1/2;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.btn_wrapper {
+  grid-row: 2/3;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.submit_btn_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit_btn,
+.next_btn,
+.prev_btn,
+.skip_btn {
+  padding: 2% 10%;
+  border-radius: 4px;
+  border: 1.2px solid #fff;
+  color: #fff;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: all 0.33s ease-in-out 0.1s;
+}
+
+.submit_btn {
+  background-color: #183b4e;
+  width: 100%;
+  margin: 20px 0;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+.submit_btn:hover {
+  border: none;
+  color: #e0e0e0;
+  border-top: 1.2px solid #fff;
+  border-bottom: 1.2px solid #fff;
+}
+
+.hovering_on_submitButton {
+  background-color: #183b4e;
+  color: #e0e0e0;
+}
+
+.next_btn {
+  background-color: #007074;
+}
+.next_btn:hover {
+  background-color: transparent;
+  border: 1.2px solid #007074;
+  color: #007074;
+}
+.prev_btn {
+  background-color: #e36414;
+}
+.prev_btn:hover {
+  background-color: transparent;
+  border: 1.2px solid #e36414;
+  color: #e36414;
+}
+
+.skip_btn {
+  background-color: #7d1c4a;
+}
+
+.skip_btn:hover {
+  background-color: transparent;
+  border: 1.2px solid #7d1c4a;
+  color: #7d1c4a;
+}
+
+@media (max-width: 950px) {
+  .user_input {
+    grid-row: 2/3;
+  }
+}
