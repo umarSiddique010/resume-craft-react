@@ -94,7 +94,7 @@ const UserInput = ({
       interestsHobbiesField={interestsHobbiesField}
       setInterestsHobbiesField={setInterestsHobbiesField}
     />,
-    <CompletedInputMessage />
+    <CompletedInputMessage />,
   ];
 
   const skippingKeys = {
@@ -114,15 +114,37 @@ const UserInput = ({
     setIsHiddenInput(true);
   };
 
+  const handleOnkeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (componentsIndex !== inputComponents.length - 1) {
+        setComponentsIndex(componentsIndex + 1);
+      } else {
+        handleSubmit(e);
+      }
+    }
+  };
+
   const handleSkip = () => {
     const currentIndexKey = skippingKeys[componentsIndex];
 
-    if (currentIndexKey) {
-      setSkipField({ ...skipField, [currentIndexKey]: true });
-    }
+    setSkipField({ ...skipField, [currentIndexKey]: true });
 
     setComponentsIndex(componentsIndex + 1);
-    handleSubmit();
+  };
+
+  const handlePrev = () => {
+    const newIndex = componentsIndex - 1;
+    const sectionToUnskip = skippingKeys[newIndex];
+
+    if (sectionToUnskip) {
+      setSkipField((prev) => ({
+        ...prev,
+        [sectionToUnskip]: false,
+      }));
+    }
+
+    setComponentsIndex(newIndex);
   };
 
   const hoveredClass =
@@ -132,7 +154,7 @@ const UserInput = ({
 
   return (
     <section className={classNames(Styles.user_input, hoveredClass)}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onKeyDown={handleOnkeyDown}>
         {inputComponents[componentsIndex]}
 
         {componentsIndex === inputComponents.length - 1 && (
@@ -151,10 +173,7 @@ const UserInput = ({
 
       <div className={Styles.btn_wrapper}>
         {componentsIndex !== 0 && (
-          <button
-            className={Styles.prev_btn}
-            onClick={() => setComponentsIndex(componentsIndex - 1)}
-          >
+          <button className={Styles.prev_btn} onClick={handlePrev}>
             Previous
           </button>
         )}
