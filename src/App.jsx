@@ -3,6 +3,7 @@ import UserInput from './components/User_Input/UserInput';
 import Display from './components/Display/Display';
 import johnDoePic from './assets/TemplateOneJohnDoeDP.jpg';
 import Styles from './App.module.css';
+import { FaGithub } from 'react-icons/fa';
 
 const App = () => {
   // State hook of BasicInformation.jsx from User_Information folder which is inside component folder
@@ -250,6 +251,15 @@ const App = () => {
           Get started and build your standout CV today.
         </button>
       </section>
+      <footer className={Styles.my_github}>
+  <a
+    href="https://github.com/umarSiddique010"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <FaGithub size={20} />
+Md Umar Siddique &mdash; Original Creator of CV Builder</a>
+</footer>
     </main>
   );
 };
