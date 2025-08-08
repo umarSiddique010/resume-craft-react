@@ -35,7 +35,6 @@ CV Builder is a dynamic web application that streamlines the resume creation pro
 ### Dynamic & Interactive
 
 - **Complete Resume Builder** with customizable sections:
-
   - Profile with photo upload
   - Address with dynamic country-state-city selection
   - Social & website links
@@ -57,7 +56,6 @@ CV Builder is a dynamic web application that streamlines the resume creation pro
 ### Customization & Output
 
 - **Template Options**:
-
   - Multiple professionally designed templates
   - Dynamic font style selection
   - Visual indicators for skills and languages
@@ -188,16 +186,15 @@ const addWorkExperience = () => {
 const [currentTemplate, setCurrentTemplate] = useState('TemplateOne');
 
 const templates = {
-    TemplateOne: <TemplateOne {...commonProps} />,
-    TemplateTwo: <TemplateTwo {...commonProps} />,
+  TemplateOne: <TemplateOne {...commonProps} />,
+  TemplateTwo: <TemplateTwo {...commonProps} />,
 };
 
 // Render selected template
 <div className={Styles.template_parent} ref={pdfRef}>
-    {templates[currentTemplate]}
-</div>
+  {templates[currentTemplate]}
+</div>;
 ```
-
 
 #### PDF Generation
 
@@ -239,12 +236,12 @@ const handleDownloadPdf = async () => {
     (pageWidth - scaledWidth) / 2,
     0,
     scaledWidth,
-    scaledHeight
+    scaledHeight,
   );
 
   pdf.save('Your-Resume-CV-Builder.pdf');
 };
-````
+```
 
 ## What I Learned
 

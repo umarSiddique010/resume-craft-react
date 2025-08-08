@@ -30,50 +30,48 @@ const Display = ({
 
   const unhideDisplay = isHiddenInput && 'unhide-display-section';
 
-const handleDownloadPdf = async () => {
-  const element = pdfRef.current;
-  if (!element) return;
+  const handleDownloadPdf = async () => {
+    const element = pdfRef.current;
+    if (!element) return;
 
-  const canvas = await html2canvas(element, {
-    scale: 2,
-    useCORS: true,
-    scrollX: 0,
-    scrollY: 0
-  });
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      scrollX: 0,
+      scrollY: 0,
+    });
 
-  const imgData = canvas.toDataURL('image/png');
-  const pdf = new jsPDF({
-    orientation: 'portrait',
-    unit: 'mm',
-    format: 'a4',
-  });
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+    });
 
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const pageHeight = pdf.internal.pageSize.getHeight();
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
 
-  const imgProps = pdf.getImageProperties(imgData);
-  const imgWidth = imgProps.width;
-  const imgHeight = imgProps.height;
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgWidth = imgProps.width;
+    const imgHeight = imgProps.height;
 
-  const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+    const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
 
-  const scaledWidth = imgWidth * ratio;
-  const scaledHeight = imgHeight * ratio;
+    const scaledWidth = imgWidth * ratio;
+    const scaledHeight = imgHeight * ratio;
 
-  pdf.addImage(
-    imgData,
-    'PNG',
-    (pageWidth - scaledWidth) / 2, 
-    0,
-    scaledWidth,
-    scaledHeight
-  );
+    pdf.addImage(
+      imgData,
+      'PNG',
+      (pageWidth - scaledWidth) / 2,
+      0,
+      scaledWidth,
+      scaledHeight,
+    );
 
-  pdf.save('Your-Resume-CV-Builder.pdf');
-};
+    pdf.save('Your-Resume-CV-Builder.pdf');
+  };
 
-
- 
   const templateArray = [
     <TemplateOne
       basicInfoField={basicInfoField}
@@ -115,7 +113,7 @@ const handleDownloadPdf = async () => {
       className={classNames(
         Styles.display_section,
         'global-display-section-class',
-        unhideDisplay
+        unhideDisplay,
       )}
     >
       <div className={classNames(Styles.display_btn_wrapper, 'btn-wrapper')}>
@@ -137,30 +135,30 @@ const handleDownloadPdf = async () => {
         <select
           value={fontStyle}
           onChange={(e) => setFontStyle(e.target.value)}
-          name='fontStyle'
+          name="fontStyle"
           id={Styles.fontStyle}
         >
-          <option value='Change Font'>Change Font</option>
+          <option value="Change Font">Change Font</option>
           <optgroup>
-            <option value='Arial'>Arial</option>
-            <option value='sans-serif'>sans-serif</option>
-            <option value='Geneva'>Geneva</option>
-            <option value='Lucida Grande'>Lucida Grande</option>
-            <option value='Times New Roman'>Times New Roman</option>
-            <option value='Cochin'>Cochin</option>
+            <option value="Arial">Arial</option>
+            <option value="sans-serif">sans-serif</option>
+            <option value="Geneva">Geneva</option>
+            <option value="Lucida Grande">Lucida Grande</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Cochin">Cochin</option>
           </optgroup>
         </select>
 
         <select
           value={changeTemplate}
           onChange={(e) => setChangeTemplate(e.target.value)}
-          name='changeTemplate'
+          name="changeTemplate"
           id={Styles.changeTemplate}
         >
-          <option value='Change Template'>Change Template</option>
+          <option value="Change Template">Change Template</option>
           <optgroup>
-            <option value='TemplateOne'>Template One</option>
-            <option value='TemplateTwo'>Template Two</option>
+            <option value="TemplateOne">Template One</option>
+            <option value="TemplateTwo">Template Two</option>
           </optgroup>
         </select>
       </div>

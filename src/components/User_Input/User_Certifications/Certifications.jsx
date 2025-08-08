@@ -4,8 +4,8 @@ const Certifications = ({ certificationField, setCertificationField }) => {
   const handleChange = (id, name, value) => {
     setCertificationField(
       certificationField.map((cf) =>
-        cf.id === id ? { ...cf, [name]: value } : cf
-      )
+        cf.id === id ? { ...cf, [name]: value } : cf,
+      ),
     );
   };
 
@@ -44,21 +44,21 @@ const Certifications = ({ certificationField, setCertificationField }) => {
   };
 
   return (
-    <section className='component-section'>
+    <section className="component-section">
       <h2>Certifications (if any)</h2>
       {certificationField.map((cf) => (
-        <div key={cf.id} className='render-box'>
+        <div key={cf.id} className="render-box">
           <h3>Certification Field: {cf.certificationFieldNo}</h3>
 
-          <div className='input-box'>
-            <label htmlFor='certificationName'>
+          <div className="input-box">
+            <label htmlFor="certificationName">
               Enter Certification Name:{' '}
             </label>
             <input
-              type='text'
-              placeholder='Certification Name'
-              id='certificationName'
-              name='certificationName'
+              type="text"
+              placeholder="Certification Name"
+              id="certificationName"
+              name="certificationName"
               value={cf.certificationName}
               onChange={(e) =>
                 handleChange(cf.id, e.target.name, e.target.value)
@@ -66,15 +66,15 @@ const Certifications = ({ certificationField, setCertificationField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='issuingOrganization'>
+          <div className="input-box">
+            <label htmlFor="issuingOrganization">
               Enter Issuing Organization:{' '}
             </label>
             <input
-              type='text'
-              placeholder='Issuing Organization'
-              id='issuingOrganization'
-              name='issuingOrganization'
+              type="text"
+              placeholder="Issuing Organization"
+              id="issuingOrganization"
+              name="issuingOrganization"
               value={cf.issuingOrganization}
               onChange={(e) =>
                 handleChange(cf.id, e.target.name, e.target.value)
@@ -82,12 +82,12 @@ const Certifications = ({ certificationField, setCertificationField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='issueDate'>Enter Issue Date: </label>
+          <div className="input-box">
+            <label htmlFor="issueDate">Enter Issue Date: </label>
             <input
-              type='date'
-              id='issueDate'
-              name='issueDate'
+              type="date"
+              id="issueDate"
+              name="issueDate"
               value={cf.issueDate}
               onChange={(e) =>
                 handleChange(cf.id, e.target.name, e.target.value)
@@ -95,14 +95,14 @@ const Certifications = ({ certificationField, setCertificationField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='expiryDate'>
+          <div className="input-box">
+            <label htmlFor="expiryDate">
               Enter Expiry Date (if applicable):{' '}
             </label>
             <input
-              type='date'
-              id='expiryDate'
-              name='expiryDate'
+              type="date"
+              id="expiryDate"
+              name="expiryDate"
               value={cf.expiryDate}
               onChange={(e) =>
                 handleChange(cf.id, e.target.name, e.target.value)
@@ -110,13 +110,13 @@ const Certifications = ({ certificationField, setCertificationField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='credential'>Enter Credential ID or Link: </label>
+          <div className="input-box">
+            <label htmlFor="credential">Enter Credential ID or Link: </label>
             <input
-              type='text'
-              placeholder='Credential ID or Link'
-              id='credential'
-              name='credential'
+              type="text"
+              placeholder="Credential ID or Link"
+              id="credential"
+              name="credential"
               value={cf.credential}
               onChange={(e) =>
                 handleChange(cf.id, e.target.name, e.target.value)
@@ -125,10 +125,10 @@ const Certifications = ({ certificationField, setCertificationField }) => {
           </div>
 
           {certificationField.length > 1 && (
-            <div className='remove-btn-box'>
+            <div className="remove-btn-box">
               <button
-                className='remove-field-btn'
-                type='button'
+                className="remove-field-btn"
+                type="button"
                 onClick={() => removeCertification(cf.id)}
               >
                 Remove Certification
@@ -138,10 +138,10 @@ const Certifications = ({ certificationField, setCertificationField }) => {
         </div>
       ))}
 
-      <div className='btn-wrapper'>
+      <div className="btn-wrapper">
         <button
-          className='add-field-btn'
-          type='button'
+          className="add-field-btn"
+          type="button"
           onClick={addCertification}
         >
           Add Certification
@@ -149,8 +149,8 @@ const Certifications = ({ certificationField, setCertificationField }) => {
 
         {certificationField.length > 2 && (
           <button
-            className='remove-all-fields-btn'
-            type='button'
+            className="remove-all-fields-btn"
+            type="button"
             onClick={removeAllCertification}
           >
             Remove all Certification

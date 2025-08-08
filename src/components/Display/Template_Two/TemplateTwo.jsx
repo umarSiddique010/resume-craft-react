@@ -87,10 +87,10 @@ const TemplateTwo = ({
                           removeExtraSpace(sf.skillLevel) === 'Basic'
                             ? '34%'
                             : removeExtraSpace(sf.skillLevel) === 'Intermediate'
-                            ? '68%'
-                            : removeExtraSpace(sf.skillLevel) === 'Advanced'
-                            ? '99.9%'
-                            : '68%',
+                              ? '68%'
+                              : removeExtraSpace(sf.skillLevel) === 'Advanced'
+                                ? '99.9%'
+                                : '68%',
                         height: '100%',
                         borderRadius: '20px',
                       }}
@@ -122,16 +122,18 @@ const TemplateTwo = ({
                           removeExtraSpace(lf.proficiencyLevel) === 'Basic'
                             ? '25%'
                             : removeExtraSpace(lf.proficiencyLevel) ===
-                              'Conversational'
-                            ? '40%'
-                            : removeExtraSpace(lf.proficiencyLevel) === 'Fluent'
-                            ? '60%'
-                            : removeExtraSpace(lf.proficiencyLevel) ===
-                              'Proficient'
-                            ? '80%'
-                            : removeExtraSpace(lf.proficiencyLevel) === 'Native'
-                            ? '99.9%'
-                            : '99.9%',
+                                'Conversational'
+                              ? '40%'
+                              : removeExtraSpace(lf.proficiencyLevel) ===
+                                  'Fluent'
+                                ? '60%'
+                                : removeExtraSpace(lf.proficiencyLevel) ===
+                                    'Proficient'
+                                  ? '80%'
+                                  : removeExtraSpace(lf.proficiencyLevel) ===
+                                      'Native'
+                                    ? '99.9%'
+                                    : '99.9%',
                         height: '100%',
                         borderRadius: '20px',
                       }}
@@ -193,8 +195,8 @@ const TemplateTwo = ({
               {
                 <a
                   href={removeExtraSpace(websitesField.linkedIn)}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {removeExtraSpace(websitesField.linkedIn) && (
                     <span>
@@ -208,8 +210,8 @@ const TemplateTwo = ({
               {
                 <a
                   href={removeExtraSpace(websitesField.gitHub)}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {removeExtraSpace(websitesField.gitHub) && (
                     <span>
@@ -223,8 +225,8 @@ const TemplateTwo = ({
               {
                 <a
                   href={removeExtraSpace(websitesField.portfolio)}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {removeExtraSpace(websitesField.portfolio) && (
                     <span>
@@ -370,8 +372,8 @@ const TemplateTwo = ({
                     {
                       <a
                         href={removeExtraSpace(pf.gitHubLink)}
-                        target='_blank'
-                        rel='noopener noreferrer'
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {removeExtraSpace(pf.gitHubLink) && 'GitHub repo:'}{' '}
                         <span>{removeExtraSpace(pf.gitHubLink)}</span>
@@ -381,8 +383,8 @@ const TemplateTwo = ({
                     {
                       <a
                         href={removeExtraSpace(pf.liveDemoLink)}
-                        target='_blank'
-                        rel='noopener noreferrer'
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {removeExtraSpace(pf.liveDemoLink) && 'Live demo:'}{' '}
                         <span>{removeExtraSpace(pf.liveDemoLink)}</span>
@@ -447,8 +449,8 @@ const TemplateTwo = ({
                       removeExtraSpace(cf.credential).startsWith('www')) ? (
                       <a
                         href={removeExtraSpace(cf.credential)}
-                        target='_blank'
-                        rel='noopener noreferrer'
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {removeExtraSpace(cf.credential) &&
                           'Open Credential link:'}{' '}
@@ -456,17 +458,17 @@ const TemplateTwo = ({
                       </a>
                     ) : (
                       <p
-                        role='button'
+                        role="button"
                         tabIndex={0}
                         onClick={() =>
                           handleCopyCredentialID(
-                            removeExtraSpace(cf.credential)
+                            removeExtraSpace(cf.credential),
                           )
                         }
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ')
                             handleCopyCredentialID(
-                              removeExtraSpace(cf.credential)
+                              removeExtraSpace(cf.credential),
                             );
                         }}
                       >

@@ -55,7 +55,7 @@ const Address = ({ addressField, setAddressField }) => {
 
     const stateCities = City.getCitiesOfState(
       selectedCountryISO,
-      selectedStateISO
+      selectedStateISO,
     );
     setCities(stateCities);
 
@@ -66,30 +66,30 @@ const Address = ({ addressField, setAddressField }) => {
   }, [selectedCountryISO, selectedStateISO]);
 
   return (
-    <section className='component-section'>
+    <section className="component-section">
       <h2>Address</h2>
 
-      <div className='input-box'>
+      <div className="input-box">
         <label htmlFor="address">Enter your address: </label>
         <input
-          type='text'
-          placeholder='address'
-          name='address'
-          id='address'
+          type="text"
+          placeholder="address"
+          name="address"
+          id="address"
           value={address}
           onChange={handleChange}
         />
       </div>
 
-      <div className='input-box'>
+      <div className="input-box">
         <label htmlFor="country">Select your country: </label>
         <select
-          id='country'
-          name='selectedCountryISO'
+          id="country"
+          name="selectedCountryISO"
           value={selectedCountryISO}
           onChange={handleChange}
         >
-          <option value='Select your country'>Select your country</option>
+          <option value="Select your country">Select your country</option>
           {countries.map((country) => (
             <option key={country.isoCode} value={country.isoCode}>
               {country.name}
@@ -98,15 +98,15 @@ const Address = ({ addressField, setAddressField }) => {
         </select>
       </div>
 
-      <div className='input-box'>
+      <div className="input-box">
         <label htmlFor="state">Select your state: </label>
         <select
-          id='state'
-          name='selectedStateISO'
+          id="state"
+          name="selectedStateISO"
           value={selectedStateISO}
           onChange={handleChange}
         >
-          <option value='Select your state'>Select your state</option>
+          <option value="Select your state">Select your state</option>
           {states.map((state) => (
             <option key={state.isoCode} value={state.isoCode}>
               {state.name}
@@ -115,15 +115,15 @@ const Address = ({ addressField, setAddressField }) => {
         </select>
       </div>
 
-      <div className='input-box'>
+      <div className="input-box">
         <label htmlFor="city">Select your city: </label>
         <select
-          id='city'
-          name='selectedCity'
+          id="city"
+          name="selectedCity"
           value={selectedCity}
           onChange={handleChange}
         >
-          <option value='Select your city'>Select your city</option>
+          <option value="Select your city">Select your city</option>
           {cities.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}

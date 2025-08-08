@@ -8,14 +8,14 @@ const InterestsHobbies = ({
   const handleChange = (id, name, value) => {
     setInterestsHobbiesField(
       interestsHobbiesField.map((ihf) =>
-        ihf.id === id ? { ...ihf, [name]: value } : ihf
-      )
+        ihf.id === id ? { ...ihf, [name]: value } : ihf,
+      ),
     );
   };
 
   const removeInterestHobbyInput = (id) => {
     setInterestsHobbiesField(
-      interestsHobbiesField.filter((ihf) => ihf.id !== id)
+      interestsHobbiesField.filter((ihf) => ihf.id !== id),
     );
   };
 
@@ -42,20 +42,20 @@ const InterestsHobbies = ({
   };
 
   return (
-    <section className='component-section'>
+    <section className="component-section">
       <h2 className={Styles.hobbies_heading}>Interests/Hobbies (Optional)</h2>
       {interestsHobbiesField.map((ihf) => (
-        <div key={ihf.id} className='render-box'>
+        <div key={ihf.id} className="render-box">
           <h3>Interests/Hobbies Input Field: {ihf.interestsHobbiesFieldNo}</h3>
-          <div className='input-box'>
-            <label htmlFor='interestsHobbies'>
+          <div className="input-box">
+            <label htmlFor="interestsHobbies">
               Write your interests/hobbies:{' '}
             </label>
             <input
-              type='text'
-              placeholder='Interests/Hobbies'
-              id='interestsHobbies'
-              name='interestsHobbies'
+              type="text"
+              placeholder="Interests/Hobbies"
+              id="interestsHobbies"
+              name="interestsHobbies"
               value={ihf.interestsHobbies}
               onChange={(e) =>
                 handleChange(ihf.id, e.target.name, e.target.value)
@@ -63,10 +63,10 @@ const InterestsHobbies = ({
             />
           </div>
           {interestsHobbiesField.length > 1 && (
-            <div className='remove-btn-box'>
+            <div className="remove-btn-box">
               <button
-                className='remove-field-btn'
-                type='button'
+                className="remove-field-btn"
+                type="button"
                 onClick={() => removeInterestHobbyInput(ihf.id)}
               >
                 Remove Interest/Hobby
@@ -76,10 +76,10 @@ const InterestsHobbies = ({
         </div>
       ))}
 
-      <div className='btn-wrapper'>
+      <div className="btn-wrapper">
         <button
-          className='add-field-btn'
-          type='button'
+          className="add-field-btn"
+          type="button"
           onClick={addInterestHobbyInput}
         >
           Add Interest/Hobby
@@ -87,8 +87,8 @@ const InterestsHobbies = ({
 
         {interestsHobbiesField.length > 2 && (
           <button
-            className='remove-all-fields-btn'
-            type='button'
+            className="remove-all-fields-btn"
+            type="button"
             onClick={removeAllInterestsHobbiesInput}
           >
             Remove All Interests/Hobbies

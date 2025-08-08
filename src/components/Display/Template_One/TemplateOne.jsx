@@ -67,7 +67,7 @@ const TemplateOne = ({
           {/* rendering  profile picture*/}
 
           <div className={Styles.profile_pic_box}>
-            <img src={basicInfoField.profilePic} alt='Profile Picture' />
+            <img src={basicInfoField.profilePic} alt="Profile Picture" />
           </div>
 
           {/* rendering  summary*/}
@@ -138,7 +138,7 @@ const TemplateOne = ({
                         className={Styles.skill_dots}
                         style={{
                           backgroundColor: ['Advanced'].includes(
-                            removeExtraSpace(sf.skillLevel)
+                            removeExtraSpace(sf.skillLevel),
                           )
                             ? '#fdf9f5'
                             : '',
@@ -148,7 +148,7 @@ const TemplateOne = ({
                         className={Styles.skill_dots}
                         style={{
                           backgroundColor: ['Advanced'].includes(
-                            removeExtraSpace(sf.skillLevel)
+                            removeExtraSpace(sf.skillLevel),
                           )
                             ? '#fdf9f5'
                             : '',
@@ -229,7 +229,7 @@ const TemplateOne = ({
                         className={Styles.skill_dots}
                         style={{
                           backgroundColor: ['Proficient', 'Native'].includes(
-                            removeExtraSpace(lf.proficiencyLevel)
+                            removeExtraSpace(lf.proficiencyLevel),
                           )
                             ? '#fdf9f5'
                             : '',
@@ -239,7 +239,7 @@ const TemplateOne = ({
                         className={Styles.skill_dots}
                         style={{
                           backgroundColor: ['Native'].includes(
-                            removeExtraSpace(lf.proficiencyLevel)
+                            removeExtraSpace(lf.proficiencyLevel),
                           )
                             ? '#fdf9f5'
                             : '',
@@ -324,8 +324,8 @@ const TemplateOne = ({
                         removeExtraSpace(cf.credential).startsWith('www.')) ? (
                         <a
                           href={removeExtraSpace(cf.credential)}
-                          target='_blank'
-                          rel='noopener noreferrer'
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {removeExtraSpace(cf.credential) &&
                             'Open Credential link:'}{' '}
@@ -333,17 +333,17 @@ const TemplateOne = ({
                         </a>
                       ) : (
                         <p
-                          role='button'
+                          role="button"
                           tabIndex={0}
                           onClick={() =>
                             handleCopyCredentialID(
-                              removeExtraSpace(cf.credential)
+                              removeExtraSpace(cf.credential),
                             )
                           }
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ')
                               handleCopyCredentialID(
-                                removeExtraSpace(cf.credential)
+                                removeExtraSpace(cf.credential),
                               );
                           }}
                         >
@@ -463,8 +463,8 @@ const TemplateOne = ({
                       {
                         <a
                           href={removeExtraSpace(pf.gitHubLink)}
-                          target='_blank'
-                          rel='noopener noreferrer'
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {removeExtraSpace(pf.gitHubLink) && 'GitHub repo:'}{' '}
                           <span>{removeExtraSpace(pf.gitHubLink)}</span>
@@ -474,8 +474,8 @@ const TemplateOne = ({
                       {
                         <a
                           href={removeExtraSpace(pf.liveDemoLink)}
-                          target='_blank'
-                          rel='noopener noreferrer'
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {removeExtraSpace(pf.liveDemoLink) && 'Live demo:'}{' '}
                           <span>{removeExtraSpace(pf.liveDemoLink)}</span>
@@ -521,8 +521,8 @@ const TemplateOne = ({
                 {
                   <a
                     href={removeExtraSpace(websitesField.linkedIn)}
-                    target='_blank'
-                    rel='noopener noreferrer'
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {removeExtraSpace(websitesField.linkedIn) && (
                       <span>
@@ -536,8 +536,8 @@ const TemplateOne = ({
                 {
                   <a
                     href={removeExtraSpace(websitesField.gitHub)}
-                    target='_blank'
-                    rel='noopener noreferrer'
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {removeExtraSpace(websitesField.gitHub) && (
                       <span>
@@ -551,8 +551,8 @@ const TemplateOne = ({
                 {
                   <a
                     href={removeExtraSpace(websitesField.portfolio)}
-                    target='_blank'
-                    rel='noopener noreferrer'
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {removeExtraSpace(websitesField.portfolio) && (
                       <span>

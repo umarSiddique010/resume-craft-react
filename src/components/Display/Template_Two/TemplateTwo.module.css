@@ -1,5 +1,3 @@
-
-
 .templateTwo_section * {
   color: #4c4c4c;
 }
@@ -22,7 +20,6 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
-
 
 .template_left_side hr {
   width: 100%;
@@ -165,7 +162,6 @@
   color: #bcbcbc;
 }
 
-
 .link_icon {
   fill: #fff;
   font-size: 1.6rem;
@@ -264,7 +260,6 @@
   color: #0000e3;
 }
 
-
 .certification_credential > p,
 .certification_credential > a {
   cursor: pointer;
@@ -324,4 +319,3 @@
 .careerSummary_container > p {
   color: #333;
 }
-

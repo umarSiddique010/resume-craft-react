@@ -1,7 +1,7 @@
 const Projects = ({ projectField, setProjectField }) => {
   const handleChange = (id, name, value) => {
     setProjectField(
-      projectField.map((pf) => (pf.id === id ? { ...pf, [name]: value } : pf))
+      projectField.map((pf) => (pf.id === id ? { ...pf, [name]: value } : pf)),
     );
   };
 
@@ -40,18 +40,18 @@ const Projects = ({ projectField, setProjectField }) => {
   };
 
   return (
-    <section className='component-section'>
+    <section className="component-section">
       <h2>Projects</h2>
       {projectField.map((pf) => (
-        <div key={pf.id} className='render-box'>
+        <div key={pf.id} className="render-box">
           <h3>Project field: {pf.projectFieldNo}</h3>
-          <div className='input-box'>
-            <label htmlFor='projectName'>Enter Project Name: </label>
+          <div className="input-box">
+            <label htmlFor="projectName">Enter Project Name: </label>
             <input
-              type='text'
-              placeholder='Project Name'
-              id='projectName'
-              name='projectName'
+              type="text"
+              placeholder="Project Name"
+              id="projectName"
+              name="projectName"
               value={pf.projectName}
               onChange={(e) =>
                 handleChange(pf.id, e.target.name, e.target.value)
@@ -59,13 +59,15 @@ const Projects = ({ projectField, setProjectField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='description'>Write a Description under 100 words: </label>
+          <div className="input-box">
+            <label htmlFor="description">
+              Write a Description under 100 words:{' '}
+            </label>
             <textarea
-              placeholder='Description'
-              id='description'
-              name='description'
-              maxLength='600'
+              placeholder="Description"
+              id="description"
+              name="description"
+              maxLength="600"
               value={pf.description}
               onChange={(e) =>
                 handleChange(pf.id, e.target.name, e.target.value)
@@ -73,13 +75,13 @@ const Projects = ({ projectField, setProjectField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='technologiesUsed'>Enter Technologies Used: </label>
+          <div className="input-box">
+            <label htmlFor="technologiesUsed">Enter Technologies Used: </label>
             <input
-              type='text'
-              placeholder='Technologies'
-              id='technologiesUsed'
-              name='technologiesUsed'
+              type="text"
+              placeholder="Technologies"
+              id="technologiesUsed"
+              name="technologiesUsed"
               value={pf.technologiesUsed}
               onChange={(e) =>
                 handleChange(pf.id, e.target.name, e.target.value)
@@ -87,13 +89,13 @@ const Projects = ({ projectField, setProjectField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor=''>Enter GitHub Link (if applicable): </label>
+          <div className="input-box">
+            <label htmlFor="">Enter GitHub Link (if applicable): </label>
             <input
-              type='url'
-              placeholder='GitHub Link'
-              id='gitHubLink'
-              name='gitHubLink'
+              type="url"
+              placeholder="GitHub Link"
+              id="gitHubLink"
+              name="gitHubLink"
               value={pf.gitHubLink}
               onChange={(e) =>
                 handleChange(pf.id, e.target.name, e.target.value)
@@ -101,15 +103,15 @@ const Projects = ({ projectField, setProjectField }) => {
             />
           </div>
 
-          <div className='input-box'>
-            <label htmlFor='liveDemoLink'>
+          <div className="input-box">
+            <label htmlFor="liveDemoLink">
               Enter Live Demo Link (if applicable):{' '}
             </label>
             <input
-              type='url'
-              placeholder='Live Demo Link'
-              id='liveDemoLink'
-              name='liveDemoLink'
+              type="url"
+              placeholder="Live Demo Link"
+              id="liveDemoLink"
+              name="liveDemoLink"
               value={pf.liveDemoLink}
               onChange={(e) =>
                 handleChange(pf.id, e.target.name, e.target.value)
@@ -118,10 +120,10 @@ const Projects = ({ projectField, setProjectField }) => {
           </div>
 
           {projectField.length > 1 && (
-            <div className='remove-btn-box'>
+            <div className="remove-btn-box">
               <button
-                className='remove-field-btn'
-                type='button'
+                className="remove-field-btn"
+                type="button"
                 onClick={() => removeProject(pf.id)}
               >
                 Remove Project
@@ -131,15 +133,15 @@ const Projects = ({ projectField, setProjectField }) => {
         </div>
       ))}
 
-      <div className='btn-wrapper'>
-        <button className='add-field-btn' type='button' onClick={addProject}>
+      <div className="btn-wrapper">
+        <button className="add-field-btn" type="button" onClick={addProject}>
           Add Project
         </button>
 
         {projectField.length > 2 && (
           <button
-            className='remove-all-fields-btn'
-            type='button'
+            className="remove-all-fields-btn"
+            type="button"
             onClick={removeAllProject}
           >
             Remove all Projects

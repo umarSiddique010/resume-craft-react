@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 import Styles from './CompletedInputMessage.module.css';
 
 const CompletedInputMessage = () => {
@@ -7,10 +7,12 @@ const CompletedInputMessage = () => {
       <div className={Styles.message_box}>
         <h2 className={Styles.heading}>You're All Set!</h2>
         <p className={Styles.description}>
-          <span className={Styles.highlight}>Congratulations!</span> You've completed your CV.
+          <span className={Styles.highlight}>Congratulations!</span> You've
+          completed your CV.
         </p>
         <p className={Styles.instruction}>
-          Click the <span className={Styles.highlight}>"Submit"</span> button below to generate and download your resume.
+          Click the <span className={Styles.highlight}>"Submit"</span> button
+          below to generate and download your resume.
         </p>
       </div>
     </section>

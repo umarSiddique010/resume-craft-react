@@ -163,7 +163,7 @@ const UserInput = ({
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               className={Styles.submit_btn}
-              type='submit'
+              type="submit"
             >
               Submit
             </button>

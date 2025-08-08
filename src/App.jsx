@@ -38,7 +38,7 @@ const App = () => {
   // State hook of ProfileSummary.jsx from User_Profile_Summary folder which is inside component folder
 
   const [careerSummaryInput, setCareerSummaryInput] = useState(
-    'I am a dedicated full stack developer with extensive experience in building end-to-end web applications. My expertise spans front-end technologies like React, Angular, and Vue.js, complemented by strong back-end skills with Node.js, Python, and various database systems. I approach development with a user-first mindset, ensuring applications are not only functionally robust but also deliver exceptional user experiences. My collaborative approach, combined with a commitment to clean, maintainable code, enables me to efficiently translate business requirements into scalable technical solutions that drive measurable results.'
+    'I am a dedicated full stack developer with extensive experience in building end-to-end web applications. My expertise spans front-end technologies like React, Angular, and Vue.js, complemented by strong back-end skills with Node.js, Python, and various database systems. I approach development with a user-first mindset, ensuring applications are not only functionally robust but also deliver exceptional user experiences. My collaborative approach, combined with a commitment to clean, maintainable code, enables me to efficiently translate business requirements into scalable technical solutions that drive measurable results.',
   );
 
   // State hook of WorkExperience.jsx from User_Work_Experience folder which is inside component folder
@@ -252,14 +252,15 @@ const App = () => {
         </button>
       </section>
       <footer className={Styles.my_github}>
-  <a
-    href="https://github.com/umarSiddique010"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaGithub size={20} />
-Md Umar Siddique &mdash; Original Creator of CV Builder</a>
-</footer>
+        <a
+          href="https://github.com/umarSiddique010"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaGithub size={20} />
+          Md Umar Siddique &mdash; Original Creator of CV Builder
+        </a>
+      </footer>
     </main>
   );
 };
