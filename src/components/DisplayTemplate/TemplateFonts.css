@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+
+.arialFont {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sansSerifFont {
+  font-family: sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.robotoFont {
+  font-family: 'Roboto', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
+
+.DeliusSwashCapsFont {
+  font-family: 'Delius Swash Caps', cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  word-spacing: 3px;
+}
+
+.playwriteFont {
+  font-family: 'Playwrite NZ Basic', cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.bitcountSingleFont {
+  font-family: 'Bitcount Single', system-ui;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    'slnt' 0,
+    'CRSV' 0.5,
+    'ELSH' 0,
+    'ELXP' 0;
+}

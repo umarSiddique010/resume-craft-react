@@ -1,0 +1,241 @@
+.templateSection {
+  width: 210mm; /* A4 width */
+  min-height: 297mm; /* A4 height */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px 25px;
+  overflow: hidden;
+}
+.darkMode {
+  filter: invert(0.8);
+}
+
+.hrBreaker {
+  width: 100%;
+  height: 1px;
+  background-color: #333333;
+  border: 0.5px solid #333333;
+  margin: 5px 0;
+}
+
+/* TEMPLATE HEADER*/
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.name_Profession {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.name_Profession h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #214e5c;
+  word-spacing: 3px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.name_Profession h2 {
+  margin-top: 3px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #09212b;
+  word-spacing: 5px;
+  letter-spacing: 0.2px;
+}
+
+.contactInfo {
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactInfo h3,
+.contactInfo p {
+  margin: 5px 8px;
+  font-size: 0.65rem;
+  color: #071921;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  word-spacing: 1px;
+}
+
+/* TEMPLATE BODY */
+
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 
+summary,
+workExperience,
+education,
+skills,
+projects,
+certification,
+awards,
+languages,
+hobbies and websites
+*/
+
+.summaryContainer,
+.workExperienceContainer,
+.educationContainer,
+.skillsContainer,
+.projectsContainer,
+.certificationContainer,
+.awardsContainer,
+.languagesContainer,
+.hobbiesContainer,
+.websitesContainer {
+  width: 100%;
+}
+
+.summaryContainer h2,
+.workExperienceContainer h2,
+.educationContainer h2,
+.skillsContainer h2,
+.projectsContainer h2,
+.certificationContainer h2,
+.awardsContainer h2,
+.languagesContainer h2,
+.hobbiesContainer h2,
+.websitesContainer h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #333333;
+  padding: 0 2px;
+  margin: 0 0 5px 0;
+}
+
+.summaryContainer ul,
+.workExperienceContainer ul,
+.educationContainer ul,
+.skillsContainer ul,
+.projectsContainer ul,
+.certificationContainer ul,
+.awardsContainer ul,
+.languagesContainer ul,
+.hobbiesContainer ul,
+.websitesContainer div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.workExperienceItems,
+.educationItems,
+.projectItems,
+.certificationItems,
+.awardItems {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.workExperienceItems h3 span,
+.educationItems h3 span,
+.skillItems,
+.projectItems h3,
+.certificationItems h3 span,
+.awardItems h3,
+.languageItems,
+.hobbyItems,
+.websitesContainer a {
+  font-weight: 600;
+}
+
+.workExperienceItems h3,
+.educationItems h3,
+.workExperienceItems h4,
+.educationItems h4,
+.projectItems h3,
+.projectItems h4,
+.projectItems a,
+.certificationItems h3,
+.certificationItems h4,
+.awardItems h3,
+.awardItems h4 {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #071921;
+  display: flex;
+  margin-top: 3px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 0 2px;
+}
+
+.projectItems a,
+.websitesContainer a {
+  cursor: pointer;
+}
+
+.skillsContainer ul,
+.languagesContainer ul,
+.hobbiesContainer ul {
+  flex-direction: row;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.skillItems,
+.languageItems,
+.hobbyItems {
+  font-size: 0.8rem;
+  color: #071921;
+  margin-top: 3px;
+  padding: 0 2px;
+}
+
+.websitesContainer a {
+  font-size: 0.6rem;
+  color: #071921;
+  margin: 0;
+  gap: 0;
+}
+
+.skillItems::before,
+.languageItems::before,
+.hobbyItems::before,
+.websitesContainer a::before {
+  content: '• ';
+  color: #5c5b57;
+}
+
+.summaryContainer p,
+.workExperienceItems p,
+.educationItems p,
+.projectItems p,
+.certificationItems p,
+.awardItems p {
+  font-size: 0.6rem;
+  color: #071921;
+  line-height: 1.3;
+  text-align: justify;
+  letter-spacing: 0.1px;
+  padding-top: 3px;
+  padding: 0 2px;
+  margin: 3px 0 0 0;
+}

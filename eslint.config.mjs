@@ -22,6 +22,7 @@ export default [
         navigator: 'readonly',
         alert: 'readonly',
         URL: 'readonly',
+        crypto: 'readonly',
       },
     },
     plugins: {

@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+.templateSection {
+  width: 210mm; /* A4 width */
+  min-height: 297mm; /* A4 height */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+
+.darkMode {
+  filter: invert(1);
+}
+
+.darkModePic {
+  filter: invert(1);
+}
+
+.dotsColorGreen {
+  background: #495035 !important;
+  transition: all 0.5s ease-in-out;
+}
+
+.hrBreaker {
+  width: 100%;
+  height: 1.2px;
+  background-color: #b2b6a4;
+  border: 0.5px solid #a5a997;
+}
+
+/* ===== LEFT SIDE OF THE TEMPLATE ===== */
+
+.templateLeftPart {
+  grid-column: 1/2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #959987;
+  padding: 10px 0;
+}
+
+/* .proficiencyLevelBox */
+
+.proficiencyLevelBox {
+  display: flex;
+  gap: 4px;
+}
+
+.proficiencyLevelBox > span {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #babcb2;
+}
+
+.skillLevelBox span {
+  height: 8px;
+  width: 8px;
+  border-radius: 100%;
+  background-color: #babcb2;
+}
+
+/*-- profile picture --*/
+.profilePic {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  align-self: center;
+}
+
+.profilePic > img {
+  width: 100%;
+  height: 100%;
+}
+
+/* left part headings*/
+
+.profileSummaryHeading,
+.skills > h2,
+.awards > h2,
+.languages > h2,
+.hobbies > h2 {
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  padding: 6px 15px;
+  color: #ffffff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* -- profile Summary- */
+
+.profileSummaryContainer {
+  margin: 5px 0;
+}
+
+.profileSummaryPara {
+  padding: 6px 15px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  word-spacing: 1px;
+  color: #ebede5;
+  line-height: 1.3;
+}
+
+/* skill section */
+
+.skills ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 15px;
+}
+
+.skills ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.skills ul li > div {
+  color: #ebede5;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.skillLevelBox {
+  width: 100%;
+  display: flex;
+  gap: 4px;
+}
+
+/* awards section */
+
+.awards > ul > li {
+  padding: 6px 15px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  word-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.awards > ul > li > h2 {
+  color: #ebede5;
+  font-size: 0.85rem;
+}
+
+.awards > ul > li > p {
+  margin-top: 3px;
+  color: #d6dacb;
+  font-size: 0.75rem;
+}
+
+/* languages section */
+
+.languages ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 15px;
+}
+
+.languages ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.languageName p {
+  color: #ebede5;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.hobbies ul {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 6px 15px;
+  flex-wrap: wrap;
+}
+
+.hobbies ul li {
+  color: #ebede5;
+  font-size: 0.75rem;
+}
+
+/* RIGHT SIDE OF THE TEMPLATE */
+
+.templateRightPart {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px 0;
+  background-color: #fdf9f5;
+}
+
+/* profile info container */
+
+.professionInfoContainer {
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  background-color: #e5e5dc;
+  margin-bottom: 18px;
+}
+.personName {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #66675c;
+  line-height: 1.2;
+}
+
+.personProfession {
+  color: #a3a69a;
+  font-size: 1.1rem;
+}
+
+.personContacts,
+.personAddress {
+  font-size: 0.7rem;
+  color: #8c8e83;
+  margin-top: 3px;
+}
+
+/* right main */
+
+.rightMain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* work experiences, educations, projects, certifications, websites and awardFields */
+
+.workExperiences,
+.educations,
+.projects,
+.certifications,
+.websites {
+  margin-top: 3px;
+  margin-bottom: -12px;
+  margin-top: 8px;
+}
+
+.workExperiences,
+.workExperiences ul,
+.workExperienceList,
+.educations,
+.educations ul,
+.educationList,
+.projects,
+.projects ul,
+.projectList,
+.certifications,
+.certifications ul,
+.certificationList,
+.websites {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.workExperiences > h2,
+.educations > h2,
+.projects > h2,
+.certifications > h2,
+.websites > h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #66675c;
+  padding: 6px 15px;
+}
+
+.websiteLinksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px 15px;
+}
+
+.workExperienceList,
+.educationList,
+.projectList,
+.certificationList {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 15px;
+}
+
+.workExperienceList > h3,
+.educationList > h3,
+.projectList > h3,
+.certificationList > h3 {
+  font-size: 0.8rem;
+  color: #76756b;
+  padding-top: 3px;
+  font-weight: 500;
+}
+
+.workExperienceList > h4:nth-child(2),
+.educationList > h4:nth-child(2),
+.projectList > h4:nth-child(2),
+.certificationList > h4 {
+  font-size: 0.65rem;
+  color: #6e6d68;
+  padding-top: 1px;
+}
+
+.workExperienceList > h4:nth-child(2) span,
+.educationList > h4:nth-child(2) span,
+.projectLinks,
+.certificationList > h4 > span {
+  font-size: 0.65rem;
+  font-style: oblique;
+  word-spacing: 0;
+  letter-spacing: 0.3px;
+  color: #6e6d68;
+}
+
+.projectLinks,
+.websiteLinks {
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-style: normal;
+}
+
+.workExperienceList > p,
+.educationList > p,
+.projectList > p,
+.certificationList > p {
+  margin: 5px 0 0 8px;
+  font-size: 0.75rem;
+  color: #5c5b57;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.workExperienceList > p::before,
+.educationList > p::before,
+.projectList > p::before,
+.certificationList > p::before,
+.websiteLinks::before {
+  content: '• ';
+  color: #5c5b57;
+}
+
+/* icons */
+
+.addressIcon,
+.phoneIcon,
+.emailIcon,
+.linkedinIcon,
+.githubIcon,
+.linkIcon,
+.liveLink,
+.portfolioIcon {
+  margin: 2px;
+  vertical-align: middle;
+  font-size: 1.1rem;
+}
+
+.linkedinIcon,
+.githubIcon,
+.linkIcon,
+.liveLink,
+.portfolioIcon {
+  margin-right: 6px;
+}
+
+.addressIcon *,
+.phoneIcon *,
+.emailIcon *,
+.linkedinIcon *,
+.githubIcon *,
+.linkIcon *,
+.liveLink *,
+.portfolioIcon * {
+  color: #8c8e83;
+}

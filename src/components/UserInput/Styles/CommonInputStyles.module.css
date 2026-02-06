@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
+
+.itemNumberHeading,
+.removeFieldBtn,
+.removeAllFieldsBtn,
+.addFieldBtn,
+.inputLabel {
+  font-family: 'Mozilla Headline', sans-serif;
+
+  font-optical-sizing: auto;
+}
+
+.componentSection {
+  width: 100%;
+  height: fit-content;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.componentHeading {
+  font-family: 'Mozilla Headline', sans-serif;
+  font-size: 3rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.renderBox {
+  height: fit-content;
+  width: 100%;
+  padding: 10px 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.itemNumberHeading {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 4px 12px;
+  text-align: center;
+}
+
+.inputBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.checkboxBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 0;
+}
+
+.inputField,
+.inputTextarea,
+.inputSelect {
+  font-size: 0.9rem;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+
+.inputField:focus,
+.inputTextarea:focus,
+.inputSelect:focus {
+  outline: 2px solid #800080;
+}
+
+.inputField,
+.inputSelect {
+  height: 50px;
+  width: 90%;
+  padding: 8px;
+}
+
+.inputLabel {
+  text-align: center;
+}
+
+.checkboxField {
+  height: 20px;
+  width: 20px;
+}
+
+.inputTextarea {
+  height: 180px;
+  width: 80%;
+  padding: 10px;
+}
+
+.btnWrapper {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.removeBtnBox {
+  width: 90%;
+  text-align: center;
+}
+
+.removeFieldBtn,
+.removeAllFieldsBtn,
+.addFieldBtn {
+  padding: 1.2% 8%;
+  border-radius: 4px;
+  border: 1.2px solid #fff;
+  color: #fff;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: all 0.33s ease-in-out 0.1s;
+}
+
+.removeFieldBtn {
+  background-color: #7d1c4a;
+}
+.removeFieldBtn:hover {
+  background-color: transparent;
+  border: 1.2px solid #7d1c4a;
+  color: #7d1c4a;
+}
+
+.removeAllFieldsBtn {
+  background-color: #56021f;
+  margin: 10px;
+}
+
+.removeAllFieldsBtn:hover {
+  background-color: transparent;
+  border: 1.2px solid #56021f;
+  color: #56021f;
+}
+
+.addFieldBtn {
+  background-color: #123524;
+  margin: 10px;
+}
+
+.addFieldBtn:hover {
+  background-color: transparent;
+  border: 1.2px solid #123524;
+  color: #123524;
+}

@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+
+.userInput {
+  display: grid;
+  grid-template-rows: 82% 5% 13%;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  overflow-y: auto;
+  flex-shrink: 0;
+  transition: all 0.5s ease-in-out 0.1s;
+  transform: scale(0.9);
+}
+
+@media (min-width: 951px) {
+  .userInput {
+    grid-column: 1/2;
+  }
+}
+
+.userInput form {
+  grid-row: 1/2;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.pagesNumberInfo {
+  grid-row: 2/3;
+  text-align: center;
+  font-size: 1.6rem;
+  align-self: end;
+  font-family: 'Google Sans Code', monospace;
+  font-optical-sizing: auto;
+}
+
+.btnWrapper {
+  grid-row: 3/4;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.submitBtnWrapper {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.submitBtn,
+.nextBtn,
+.prevBtn,
+.skipBtn {
+  padding: 2% 6%;
+  border-radius: 4px;
+  border: 1.2px solid #fff;
+  color: #fff;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: all 0.33s ease-in-out 0.1s;
+  font-family: 'Google Sans Code', monospace;
+  font-optical-sizing: auto;
+}
+
+.submitBtn {
+  background-color: #183b4e;
+  width: 100%;
+  height: 100%;
+  margin: 20px 0;
+}
+
+.submitBtn:hover {
+  border: none;
+  color: #e0e0e0;
+  border: 1.2px solid #fff;
+}
+
+.hoveringOnSubmitButton {
+  background-color: #183b4e;
+  color: #e0e0e0;
+}
+
+.nextBtn {
+  background-color: #007074;
+}
+.nextBtn:hover {
+  background-color: transparent;
+  border: 1.2px solid #007074;
+  color: #007074;
+}
+.prevBtn {
+  background-color: #e36414;
+}
+.prevBtn:hover {
+  background-color: transparent;
+  border: 1.2px solid #e36414;
+  color: #e36414;
+}
+
+.skipBtn {
+  background-color: #7d1c4a;
+}
+
+.skipBtn:hover {
+  background-color: transparent;
+  border: 1.2px solid #7d1c4a;
+  color: #7d1c4a;
+}
+
+@media (max-width: 950px) {
+  .userInput {
+    grid-row: 2/3;
+  }
+}
