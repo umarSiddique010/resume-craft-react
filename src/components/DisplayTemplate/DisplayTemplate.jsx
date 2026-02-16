@@ -81,15 +81,15 @@ const Display = () => {
     if (!element) return;
 
     const canvas = await html2canvas(element, {
-      scale: 3,
+      scale: 3, // High quality
       useCORS: true,
       scrollY: -window.scrollY,
       backgroundColor: '#ffffff',
     });
 
     const imgData = canvas.toDataURL('image/png');
-
     const pdf = new jsPDF('p', 'mm', 'a4');
+
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
 
@@ -102,7 +102,9 @@ const Display = () => {
     pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
     heightLeft -= pageHeight;
 
-    while (heightLeft > 0) {
+    const marginBuffer = 2;
+
+    while (heightLeft > marginBuffer) {
       position = heightLeft - imgHeight;
       pdf.addPage();
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);

@@ -1,7 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+@font-face {
+  font-family: 'Delius Swash Caps';
+  src: url('../../assets/fonts/DeliusSwashCaps.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Rubik Distressed';
+  src: url('../../assets/fonts/RubikDistressed.ttf') format('truetype');
+}
 
-.WelcomePage {
+.welcomePage {
   width: 100%;
   height: 100vh;
   background-image: url(../../assets/welcomePageBG.webp);
@@ -11,7 +17,7 @@
   background-blend-mode: darken;
 }
 
-.WelcomeContainer {
+.welcomeContainer {
   width: 100%;
   height: 100%;
   display: flex;
@@ -22,7 +28,7 @@
   backdrop-filter: blur(5px);
 }
 
-.WelcomeHeading {
+.welcomeHeading {
   font-size: 3rem;
   font-weight: 800;
   margin: 15px 0;
@@ -30,6 +36,7 @@
   text-shadow: 5px 2px 2px #000000;
   font-family: 'Rubik Distressed', system-ui;
   font-style: normal;
+  text-align: center;
 }
 
 .para {
@@ -118,5 +125,11 @@
     bottom: 0;
     border-radius: 0;
     font-size: 0.5rem;
+  }
+  .welcomeHeading {
+    font-size: 2.8rem;
+  }
+  .para {
+    width: 85%;
   }
 }

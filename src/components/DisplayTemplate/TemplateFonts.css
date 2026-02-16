@@ -1,7 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../assets/fonts/Roboto.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Playwrite NZ';
+  src: url('../../assets/fonts/PlaywriteNZ.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Delius Swash Caps';
+  src: url('../../assets/fonts/DeliusSwashCaps.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bitcount Single';
+  src: url('../../assets/fonts/BitcountSingle.ttf') format('truetype');
+}
 
 .arialFont {
   font-family: Arial, Helvetica, sans-serif;
@@ -28,7 +42,7 @@
 }
 
 .playwriteFont {
-  font-family: 'Playwrite NZ Basic', cursive;
+  font-family: 'Playwrite NZ', cursive;
   font-optical-sizing: auto;
   font-style: normal;
 }

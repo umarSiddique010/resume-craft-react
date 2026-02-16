@@ -4,9 +4,9 @@ import { FaGithub } from 'react-icons/fa';
 
 const WelcomePage = () => {
   return (
-    <main className={styles.WelcomePage}>
-      <div className={styles.WelcomeContainer}>
-        <h1 className={styles.WelcomeHeading}>Craft Your Perfect Resume</h1>
+    <main className={styles.welcomePage}>
+      <div className={styles.welcomeContainer}>
+        <h1 className={styles.welcomeHeading}>Craft Your Perfect Resume</h1>
         <p className={styles.para}>
           A simple yet powerful resume builder to help you showcase your skills,
           experience, and achievements—all in one place.

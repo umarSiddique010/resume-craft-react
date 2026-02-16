@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
+@font-face {
+  font-family: 'Mozilla Headline';
+  src: url('../../../assets/fonts/MozillaHeadline.ttf') format('truetype');
+}
 
 .itemNumberHeading,
 .removeFieldBtn,
@@ -6,7 +9,6 @@
 .addFieldBtn,
 .inputLabel {
   font-family: 'Mozilla Headline', sans-serif;
-
   font-optical-sizing: auto;
 }
 
@@ -68,7 +70,7 @@
 .inputField,
 .inputTextarea,
 .inputSelect {
-  font-size: 0.9rem;
+  font-size: 1rem;
   border: 1px solid #333;
   border-radius: 3px;
 }
@@ -157,4 +159,12 @@
   background-color: transparent;
   border: 1.2px solid #123524;
   color: #123524;
+}
+
+@media (max-width: 768px) {
+  .inputField,
+  .inputTextarea,
+  .inputSelect {
+    font-size: 1.2rem;
+  }
 }
