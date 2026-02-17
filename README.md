@@ -101,7 +101,7 @@ Follow these steps to run the project locally.
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/umarSiddique010/resume-craft.git
+    git clone https://github.com/umarSiddique010/resume-craft-react.git
     cd resume-craft
     ```
 
