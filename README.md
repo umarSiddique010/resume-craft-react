@@ -97,6 +97,13 @@ Every push and PR to `main` must pass all three jobs in `.github/workflows/ci.ym
 - **Build** — Runs `npm run build` only after tests pass (`needs: test`), verifying the production build is never broken
 - **Git Hooks (Husky + Lint-Staged)** — ESLint and Prettier also enforced locally on pre-commit, so issues are caught before they ever reach CI
 
+### 6. Performance Optimizations
+
+- **Route-level Code Splitting** — All routes are lazy-loaded via `React.lazy` + `Suspense`, keeping the initial bundle minimal
+- **Manual Chunk Splitting** — `@react-pdf/renderer`, `react-icons`, and vendor libraries are split into separate chunks via Vite's `manualChunks`
+- **Font Preloading** — Critical fonts preloaded in `index.html` via `<link rel="preload">`
+- **Local Fonts Only** — All fonts are self-hosted `woff2` files; no external CDN dependency
+
 ## Tech Stack
 
 | Category             | Technology                    | Usage                                         |
@@ -189,7 +196,7 @@ src
 │           ├── resumeTypes.js
 │           ├── resumeInitialState.js
 │           └── reducerInputUtils.js
-├── App.jsx                     # Application routing
+├── App.jsx                     # Application routing & Lazy load fallback UI
 ├── main.jsx                    # React entry point
 └── setupTests.js               # Vitest
 ```

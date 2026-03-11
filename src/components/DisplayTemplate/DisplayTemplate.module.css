@@ -70,9 +70,13 @@
   color: #800505;
 }
 
+.mobilePdfMessage p {
+  color: #ffffff;
+}
+
 .mobilePdfMessage strong {
   font-weight: 700;
-  color: #1e1e1e;
+  color: #860786;
 }
 
 .downloadBtn:hover {
@@ -98,7 +102,7 @@
 
 .dots {
   position: fixed;
-  inset: -60px;
+  inset: 0;
   background-image: radial-gradient(circle, #00e2e5 1.26px, transparent 1.8px);
   background-size: 28px 28px;
   opacity: 0.1;
@@ -136,5 +140,14 @@
     display: flex;
     align-items: normal;
     gap: 40px;
+  }
+  .dots {
+    inset: -260px;
+  }
+}
+
+@media (max-width: 581px) {
+  .dots {
+    inset: -470px;
   }
 }
