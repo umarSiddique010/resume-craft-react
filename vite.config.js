@@ -9,4 +9,14 @@ export default defineConfig({
     setupFiles: './src/setupTests.js',
     css: true,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          pdf: ['@react-pdf/renderer'],
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
+  },
 });
