@@ -55,7 +55,11 @@ const Skills = () => {
               className={commonStyles.inputLabel}
               htmlFor={`skill-${field.id}`}
             >
-              Enter Skills <i>(e.g., JavaScript, React, Problem solving)</i>:
+              Enter Skills{' '}
+              <i className={commonStyles.inputLabel}>
+                (e.g., JavaScript, React, Problem solving)
+              </i>{' '}
+              :
             </label>
 
             <input

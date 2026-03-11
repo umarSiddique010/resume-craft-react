@@ -23,7 +23,7 @@ describe('WelcomePage', () => {
 
     // Check Feature List Items
     const listItems = screen.getAllByRole('listitem');
-    expect(listItems).toHaveLength(4);
+    expect(listItems).toHaveLength(5);
     expect(screen.getByText(/ATS-friendly resume format/i)).toBeInTheDocument();
   });
 
@@ -39,7 +39,7 @@ describe('WelcomePage', () => {
     expect(startBtn).toHaveAttribute('href', '/home');
   });
 
-  it('renders the GitHub footer link correctly', () => {
+  it('renders the portfolio footer link correctly', () => {
     render(
       <MemoryRouter>
         <WelcomePage />
@@ -50,10 +50,7 @@ describe('WelcomePage', () => {
 
     expect(githubLink).toBeInTheDocument();
 
-    expect(githubLink).toHaveAttribute(
-      'href',
-      'https://github.com/umarSiddique010',
-    );
+    expect(githubLink).toHaveAttribute('href', 'https://www.umarsiddique.dev/');
     expect(githubLink).toHaveAttribute('target', '_blank');
     expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer');
   });

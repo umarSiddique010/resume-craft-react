@@ -14,11 +14,9 @@ describe('HomePage', () => {
   it('renders both UserInput and DisplayTemplate sections', () => {
     render(<HomePage />);
 
-    // Verify UserInput is present
     expect(screen.getByTestId('user-input')).toBeInTheDocument();
     expect(screen.getByText('User Input Section')).toBeInTheDocument();
 
-    // Verify DisplayTemplate is present
     expect(screen.getByTestId('display-template')).toBeInTheDocument();
     expect(screen.getByText('Display Section')).toBeInTheDocument();
   });

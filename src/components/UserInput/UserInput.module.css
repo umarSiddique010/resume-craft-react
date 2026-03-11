@@ -1,18 +1,16 @@
-@font-face {
-  font-family: 'Google Sans Code';
-  src: url('../../assets/fonts/GoogleSansCode.ttf') format('truetype');
-}
-
 .userInput {
   display: grid;
   grid-template-rows: 82% 5% 13%;
   height: 100%;
   width: 100%;
-  background-color: transparent;
+  padding: 25px 3px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
   overflow-y: auto;
   flex-shrink: 0;
-  transition: all 0.5s ease-in-out 0.1s;
-  transform: scale(0.9);
+  transition: all 0.5s ease-in-out;
 }
 
 @media (min-width: 951px) {
@@ -25,15 +23,17 @@
   grid-row: 1/2;
   width: 100%;
   overflow-y: auto;
+  padding-top: 20px;
 }
 
 .pagesNumberInfo {
   grid-row: 2/3;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.28rem;
   align-self: end;
   font-family: 'Google Sans Code', monospace;
   font-optical-sizing: auto;
+  color: #ffffff;
 }
 
 .btnWrapper {
@@ -55,13 +55,13 @@
 .nextBtn,
 .prevBtn,
 .skipBtn {
-  padding: 2% 6%;
+  padding: 1.6% 4.8%;
   border-radius: 4px;
   border: 1.2px solid #fff;
   color: #fff;
-  font-size: 1.08rem;
+  font-size: 0.86rem;
   cursor: pointer;
-  transition: all 0.33s ease-in-out 0.1s;
+  transition: all 0.33s ease-in-out;
   font-family: 'Google Sans Code', monospace;
   font-optical-sizing: auto;
 }
@@ -70,11 +70,10 @@
   background-color: #183b4e;
   width: 100%;
   height: 100%;
-  margin: 20px 0;
+  margin: 16px 0;
 }
 
 .submitBtn:hover {
-  border: none;
   color: #e0e0e0;
   border: 1.2px solid #fff;
 }
@@ -88,15 +87,16 @@
   background-color: #007074;
 }
 .nextBtn:hover {
-  background-color: transparent;
+  background-color: #ffffff;
   border: 1.2px solid #007074;
   color: #007074;
 }
+
 .prevBtn {
   background-color: #e36414;
 }
 .prevBtn:hover {
-  background-color: transparent;
+  background-color: #ffffff;
   border: 1.2px solid #e36414;
   color: #e36414;
 }
@@ -104,9 +104,8 @@
 .skipBtn {
   background-color: #7d1c4a;
 }
-
 .skipBtn:hover {
-  background-color: transparent;
+  background-color: #ffffff;
   border: 1.2px solid #7d1c4a;
   color: #7d1c4a;
 }

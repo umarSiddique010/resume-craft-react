@@ -1,177 +1,264 @@
-# <img height="25" src="./public/favicon.png"> Resume Craft
+# <img height="50" src="./public/favicon.ico" alt="logo" style="margin-bottom:-15px;"> Resume Craft
 
-![Resume Craft Banner](https://placehold.co/1200x300/183b4e/ffffff?text=Resume+Craft)
+<div align="center">
 
-**Resume Craft** is a powerful, client-side React application designed to help users build professional, aesthetically pleasing, and ATS-friendly resumes effortlessly. Powered by modern web technologies, it offers real-time previewing, smart input handling, and diverse export options.
+### Craft Your Perfect Resume.
 
-## 🚀 Features
+<p align="center">
+  <strong>A production-grade React 19 resume builder with multiple templates,
+  ATS-friendly output, PDF export, and a fully tested codebase.</strong>
+</p>
 
-### 🎨 Professional Templates
+<p align="center">
+  <a href="https://resume-craft-react.vercel.app/"><strong>View Live Production Deployment</strong></a>
+  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="#local-development"><strong>Local Setup</strong></a>
+  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="https://github.com/umarSiddique010/resume-craft-react"><strong>Repository</strong></a>
+  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="https://github.com/umarSiddique010/resume-craft-react/issues"><strong>Report an Issue</strong></a>
+</p>
 
-Choose from three distinct, professionally designed templates tailored to different industry needs:
+[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![React Router](https://img.shields.io/badge/React_Router_v7-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/)
+[![React PDF](https://img.shields.io/badge/@react--pdf-FF0000?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://react-pdf.org/)
+[![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Husky](https://img.shields.io/badge/Husky_Hooks-42B983?style=for-the-badge&logo=git&logoColor=white)](https://typicode.github.io/husky/)
+[![Lint-Staged](https://img.shields.io/badge/Lint--Staged-1572B6?style=for-the-badge&logo=git&logoColor=white)](https://github.com/lint-staged/lint-staged)
+[![Vercel](https://img.shields.io/badge/Vercel_Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-1.  **Standard Template:** A modern, visual layout featuring skill-level dots and a clean, two-column grid. Perfect for creative and tech roles.
-2.  **Classic Template:** A traditional, formal layout focusing on hierarchy and readability. Ideal for corporate, legal, and academic roles.
-3.  **ATS-Friendly Template:** A parsing-optimized, text-based layout generated using `@react-pdf/renderer`. This ensures maximum compatibility with Applicant Tracking Systems.
+</div>
 
-### ⚡ Core Functionality
+## Overview
 
-- **Real-Time Preview:** Instantly see changes as you type with a split-screen view.
-- **Smart Forms:** Interactive inputs for Education, Experience, Skills, and more, including dynamic country/state/city selection via `country-state-city`.
-- **Privacy Focused:** No database required. All data resides locally in the browser context during the session.
-- **High-Quality Export:** Download resumes as high-resolution PDFs using `html2canvas` + `jspdf` (Visual) or native PDF generation (ATS).
-- **Customization:** Toggle specific sections on/off and choose from multiple font styles (Roboto, Playwrite, etc.).
+**Resume Craft** is a fully client-side resume builder built with **React 19** and **Vite**. Users instantly generate a professional PDF resume — **no backend, no login, and no data storage**. Since **privacy matters**, all data stays in the browser and never leaves the user's device.
 
----
+The project is engineered with a focus on code quality: a strict **Context + Reducer** state architecture, strong **Vitest** coverage across components, templates, and reducer logic, and an automated **Husky + Lint-Staged** pre-commit pipeline.
 
-## 🛠 Tech Stack
+## Application Preview
 
-This project leverages a modern, opinionated stack for performance and developer experience:
+![Resume Craft Live](./public/app-screenshot.webp)
 
-- **Core:** [React 19](https://react.dev/)
-- **Build Tool:** [Vite](https://vitejs.dev/)
-- **Styling:** CSS Modules (Scoped styling)
-- **Routing:** React Router DOM v7
-- **State Management:** React Context API + `useReducer`
-- **PDF Generation:**
-  - `@react-pdf/renderer` (for ATS layout)
-  - `html2canvas` & `jspdf` (for Visual layouts)
-- **Utilities:** `country-state-city` (Location logic), `react-toastify` (Notifications)
+## Features & Architecture
 
----
+### 1. Four Professional Resume Templates
 
-## 🧪 Testing Strategy
+- **Bold Accent** — Modern two-column layout with a dark navy header, gold accent elements, and skill badges — set as the default template
+- **Standard** — Clean two-column layout with an olive sidebar and profile picture support
+- **Classic** — Traditional single-column design with a centered header
+- **ATS-Friendly** — Text-only, parser-safe layout built with `@react-pdf/renderer` to pass automated applicant tracking systems
 
-We maintain rigorous code quality standards using **Vitest**. The project boasts **100% Code Coverage** across reducer logic and UI components.
+### 2. Client-Side PDF Generation
 
-- **Unit Testing:** Granular tests for `resumeReducer` to ensure state integrity (CRUD operations on resume fields).
-- **Component Testing:** Testing Library (`@testing-library/react`) integration to verify DOM rendering, user interactions, and conditional logic.
-- **Integration Testing:** Verifying workflows from input to display context updates.
+PDF export runs entirely in the browser — no server round-trips, no file uploads.
 
-### Running Tests
+- **`@react-pdf/renderer`** handles the ATS template as a true PDF document with preserved text layers
+- **`html2pdf.js` + `html2canvas`** captures the live DOM preview for high-fidelity layout export on Bold Accent, Standard, and Classic templates
+- **6 Custom Font Choices** — Roboto, Google Sans Code, Poppins, Playwrite NZ, Delius Swash Caps, Rubik Distressed
 
-To execute the test suite:
+### 3. Global State: Context + Reducer
 
-```bash
-npm run test
+All resume data lives in a single state tree managed by `useReducer` inside `InputFieldContext`. No Redux, no Zustand — just clean React primitives.
+
+- **Typed Action Constants** — Every section (Work, Education, Skills, Projects, etc.) has its own scoped `ADD / UPDATE / REMOVE / REMOVE_ALL` action types defined in `resumeTypes.js`
+- **Pure Reducer** — `resumeReducer.js` is a single pure function with zero side effects, making it fully deterministic and easy to test
+- **Live Preview** — `DisplayTemplate` consumes context directly, so the resume preview re-renders in real time as the user types
+
+```
+User types in form
+      ↓
+dispatchField({ type: UPDATE_WORK_EXPERIENCE_FIELD, payload })
+      ↓
+resumeReducer → new state
+      ↓
+InputFieldContext re-renders consumers
+      ↓
+<DisplayTemplate /> updates instantly
+      ↓
+User clicks Download → PDF generated client-side
 ```
 
-To generate a coverage report:
+### 4. Testing & Quality Assurance
 
-```bash
-npm run coverage
-```
+This project treats testing as a first-class citizen, not an afterthought.
 
----
+- **Unit Testing** — All components (WelcomePage, HomePage, all UserInput sections, all four templates) and reducer logic are tested using **Vitest** and **React Testing Library**
+- **Reducer Tests** — Comprehensive test cases validate the `resumeReducer` across core action paths including add, update, remove, and key edge cases.
+- **Mocking Strategy** — External dependencies like `@react-pdf/renderer`, `react-router-dom`, and `html2pdf.js` are mocked to ensure isolated, deterministic tests
 
-## ⚙️ CI/CD & Quality Assurance
+### 5. CI Pipeline
 
-This repository employs a robust CI/CD pipeline and local quality checks to ensure stability.
+Every push and PR to `main` must pass all three jobs in `.github/workflows/ci.yml` before merging:
 
-### Local Quality Gates (Husky)
+- **Quality** — Runs `npm run check` (ESLint + Prettier) on every push and PR
+- **Test** — Runs `npm run coverage` (Vitest); build job won't start until this passes
+- **Build** — Runs `npm run build` only after tests pass (`needs: test`), verifying the production build is never broken
+- **Git Hooks (Husky + Lint-Staged)** — ESLint and Prettier also enforced locally on pre-commit, so issues are caught before they ever reach CI
 
-We use **Husky** and **lint-staged** to enforce quality before every commit:
+## Tech Stack
 
-1.  **Linting:** Runs `eslint` to catch syntax and logic errors.
-2.  **Formatting:** Runs `prettier` to ensure consistent code style.
+| Category             | Technology                    | Usage                                         |
+| :------------------- | :---------------------------- | :-------------------------------------------- |
+| **UI Library**       | **React 19**                  | Component architecture, hooks, context        |
+| **Build Tool**       | **Vite**                      | Dev server and production bundler             |
+| **State Management** | **Context + useReducer**      | Global resume state with typed actions        |
+| **PDF Generation**   | **@react-pdf/renderer**       | ATS-friendly true PDF rendering               |
+| **PDF Export**       | **html2pdf.js / html2canvas** | High-fidelity DOM-to-PDF download             |
+| **Routing**          | **React Router v7**           | Client-side page navigation                   |
+| **Location Data**    | **country-state-city**        | Address field dropdowns                       |
+| **Testing**          | **Vitest + RTL**              | Unit tests for all components and reducers    |
+| **Code Quality**     | **ESLint + Prettier**         | Enforced style and lint rules                 |
+| **Git Hooks**        | **Husky + Lint-Staged**       | Pre-commit validation pipeline                |
+| **CI**               | **GitHub Actions**            | Quality → Test → Build pipeline on every push |
+| **Deployment**       | **Vercel**                    | Edge deployment, auto-deploys on push to main |
 
-### GitHub Actions Workflow
-
-On every push or pull request, our automated workflow triggers:
-
-1.  **Lint:** Checks code compliance with ESLint rules.
-2.  **Test:** Runs the full Vitest suite to ensure no regressions.
-3.  **Build:** Attempts a production build via Vite to verify deployability.
-
-_Note: The build only passes if linting and testing succeed._
-
----
-
-## 🚀 Setup Instructions
-
-Follow these steps to run the project locally.
+## Local Development
 
 ### Prerequisites
 
-- Node.js (v18 or higher recommended)
+- Node.js 18+ (LTS recommended)
 - npm
 
-### Installation
+### 1. Clone the Repository
 
-1.  **Clone the repository:**
+```bash
+git clone https://github.com/umarSiddique010/resume-craft-react.git
 
-    ```bash
-    git clone https://github.com/umarSiddique010/resume-craft-react.git
-    cd resume-craft
-    ```
+cd resume-craft-react
+```
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+### 2. Install Dependencies
 
-### Development
+```bash
+npm install
+```
 
-Start the local development server:
+### 3. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Open your browser and navigate to `http://localhost:5173`.
+Open [http://localhost:5173](http://localhost:5173) to view the application.
 
-### Production Build
-
-To create an optimized production build:
+### 4. Running Tests
 
 ```bash
-npm run build
+# Run full test suite
+npm test
+
+# Run with interactive UI
+npm run test:ui
+
+# Generate coverage report
+npm run coverage
 ```
 
-To preview the production build locally:
+### 5. Lint & Format
 
 ```bash
-npm run preview
+# Check lint + format together
+npm run check
+
+# Auto-fix lint issues
+npm run lint:fix
+
+# Auto-format all files
+npm run format
 ```
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
-src/
-├── assets/                 # Static images and icons
+src
+├── assets/                     # Images, icons, fonts
 ├── components/
-│   ├── DisplayTemplate/    # Resume renderers (Standard, Classic, ATS)
-│   ├── HomePage/           # Main split-screen container
-│   ├── UserInput/          # Input forms (Personal, Educations, Skills, etc.)
-│   └── WelcomePage/        # Landing page
+│   ├── DisplayTemplate/       # Resume templates (Bold Accent, Standard, Classic, ATS)
+│   ├── HomePage/              # Main split layout
+│   ├── UserInput/             # Form sections (Personal, Skills, Projects, etc.)
+│   └── WelcomePage/           # Landing page
 ├── context/
-│   └── UserInputContext/   # Global State (Context + Reducer)
-├── App.jsx                 # Main Routing Logic
-└── main.jsx                # Entry point
+│   └── UserInputContext/
+│       ├── InputFieldContext.jsx
+│       └── reducer/
+│           ├── resumeReducer.js
+│           ├── resumeTypes.js
+│           ├── resumeInitialState.js
+│           └── reducerInputUtils.js
+├── App.jsx                     # Application routing
+├── main.jsx                    # React entry point
+└── setupTests.js               # Vitest
 ```
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome. Here's how to get started:
 
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
+**1. Fork & Clone**
 
-**Please ensure all tests pass (`npm run test`) before submitting.**
+```bash
+git clone https://github.com/umarSiddique010/resume-craft-react.git
+
+cd resume-craft-react
+
+npm install
+```
+
+**2. Create a Branch**
+
+```bash
+git checkout -b feat/your-feature-name
+```
+
+**3. Make Your Changes**
+
+- Follow existing code style (ESLint + Prettier enforce this automatically on commit)
+- Add or update tests for any changed logic
+- Keep all state changes inside the reducer — no local state for resume data
+
+**4. Open a Pull Request**
+
+- Target the `main` branch
+- Write a clear title and description
+- Reference related issues with `Closes #issue-number`
+
+**Guidelines:** One feature or fix per PR. Don't remove existing tests. If adding a new template, follow the same props structure as existing ones.
 
 ---
 
-## 📝 License
+<div align="center">
 
-Distributed under the MIT License. See `LICENSE` for more information.
+### Developer & Maintainer
 
----
+**Md Umar Siddique**
 
-_Crafted by [Md Umar Siddique](https://github.com/umarSiddique010)_
+<p align="center">
+  <a href="https://www.umarsiddique.dev/">
+    <img src="https://img.shields.io/badge/Portfolio-umarsiddique.dev-000000?style=flat-square&logo=googlechrome&logoColor=white" alt="Portfolio Website" />
+  </a>
+  <a href="https://www.linkedin.com/in/md-umar-siddique-1519b12a4/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://github.com/umarSiddique010">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://www.npmjs.com/~umarsiddique010">
+    <img src="https://img.shields.io/badge/NPM-CB3837?style=flat-square&logo=npm&logoColor=white" alt="NPM" />
+  </a>
+  <a href="https://dev.to/umarsiddique010">
+    <img src="https://img.shields.io/badge/Dev.to-0A0A0A?style=flat-square&logo=dev.to&logoColor=white" alt="Dev.to" />
+  </a>
+  <a href="mailto:us70763@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+</p>
+
+&copy; 2024 - Present. Released under the MIT License.
+
+</div>

@@ -1,3 +1,37 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../assets/fonts/Roboto.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playwrite NZ';
+  src: url('../../assets/fonts/PlaywriteNZ.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Delius Swash Caps';
+  src: url('../../assets/fonts/DeliusSwashCaps.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Code';
+  src: url('../../assets/fonts/GoogleSansCode.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../../assets/fonts/Poppins-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rubik Distressed';
+  src: url('../../assets/fonts/RubikDistressed.woff2') format('woff2');
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -31,6 +65,11 @@ body {
 #root {
   width: 100%;
   height: 100%;
+}
+
+i {
+  font-style: italic;
+  text-shadow: 0.1px 0.1px 0.7px #1f1f1f;
 }
 
 @media (max-width: 950px) {

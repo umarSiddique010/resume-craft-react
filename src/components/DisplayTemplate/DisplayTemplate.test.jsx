@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 
 // --- MOCKING DEPENDENCIES ---
 
-// Mock Navigation (used for 'Edit Resume' button)
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
@@ -17,7 +16,6 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-// Mock Toast Notifications
 vi.mock('react-toastify', () => ({
   toast: {
     success: vi.fn(),
@@ -26,14 +24,11 @@ vi.mock('react-toastify', () => ({
   },
 }));
 
-// Mock Heavy Libraries (html2canvas & jsPDF)
-// Using vi.hoisted to ensure mocks are initialized before imports
 const mocks = vi.hoisted(() => {
   return {
     html2canvas: vi.fn(() =>
       Promise.resolve({ toDataURL: () => 'data:image/png;base64,fake' }),
     ),
-    // Standard function used for jsPDF so 'new' keyword works
     jsPDF: vi.fn(function () {
       return {
         internal: { pageSize: { getWidth: () => 210, getHeight: () => 297 } },
@@ -48,7 +43,9 @@ const mocks = vi.hoisted(() => {
 vi.mock('html2canvas', () => ({ default: mocks.html2canvas }));
 vi.mock('jspdf', () => ({ default: mocks.jsPDF }));
 
-// Mock Child Template Components (keeps test isolated)
+vi.mock('./BoldAccentTemplate/BoldAccentTemplate', () => ({
+  default: () => <div>Bold Accent Template Content</div>,
+}));
 vi.mock('./StandardTemplate/StandardTemplate', () => ({
   default: () => <div>Standard Template Content</div>,
 }));
@@ -59,7 +56,6 @@ vi.mock('./ATSFriendlyTemplate/ATSFriendlyTemplate', () => ({
   default: () => <div>ATS Friendly Content</div>,
 }));
 
-// Mock @react-pdf/renderer components
 vi.mock('@react-pdf/renderer', () => ({
   PDFDownloadLink: ({ children }) => (
     <button>{children({ loading: false })}</button>
@@ -72,7 +68,6 @@ vi.mock('@react-pdf/renderer', () => ({
   StyleSheet: { create: () => {} },
 }));
 
-// Mock Context Provider
 const MockProvider = ({ children }) => (
   <InputFieldContext.Provider value={[resumeInitialState, vi.fn()]}>
     {children}
@@ -82,7 +77,6 @@ const MockProvider = ({ children }) => (
 describe('DisplayTemplate Component', () => {
   const originalLocation = window.location;
 
-  // Setup: Force URL to be '/resumeCrafted' so controls are visible by default
   beforeEach(() => {
     delete window.location;
     window.location = {
@@ -92,19 +86,20 @@ describe('DisplayTemplate Component', () => {
     mockNavigate.mockClear();
   });
 
-  // Teardown: Restore original window.location
   afterEach(() => {
     window.location = originalLocation;
   });
 
-  it('renders standard template by default', () => {
+  it('renders Bold Accent Template by default', () => {
     render(
       <MockProvider>
         <Display />
       </MockProvider>,
     );
 
-    expect(screen.getByText('Standard Template Content')).toBeInTheDocument();
+    expect(
+      screen.getByText('Bold Accent Template Content'),
+    ).toBeInTheDocument();
     expect(screen.getByText('Download as PDF')).toBeInTheDocument();
   });
 
@@ -115,88 +110,76 @@ describe('DisplayTemplate Component', () => {
       </MockProvider>,
     );
 
-    // Select Classic Template from dropdown
     const select = screen.getByLabelText(/Select Template/i, {
       selector: 'select#templates',
     });
     fireEvent.change(select, { target: { value: 'classicTemplate' } });
 
-    // Verify Classic Template renders and Standard is removed
     expect(screen.getByText('Classic Template Content')).toBeInTheDocument();
     expect(
-      screen.queryByText('Standard Template Content'),
+      screen.queryByText('Bold Accent Template Content'),
     ).not.toBeInTheDocument();
   });
 
-  it('switches to ATS Template and shows PDF Viewer', () => {
+  it('switches to ATS Template and shows PDF download button', () => {
     render(
       <MockProvider>
         <Display />
       </MockProvider>,
     );
 
-    // Select ATS Template
     const select = screen.getByLabelText(/Select Template/i, {
       selector: 'select#templates',
     });
-    fireEvent.change(select, { target: { value: 'atsFriendly' } });
+    fireEvent.change(select, { target: { value: 'atsFriendlyTemplate' } });
 
-    // Verify PDF Viewer appears and download button changes
-    expect(screen.getByText(/PDF Viewer:/i)).toBeInTheDocument();
     expect(screen.getByText('Download ATS Template')).toBeInTheDocument();
+    expect(screen.queryByText('Download as PDF')).not.toBeInTheDocument();
   });
 
-  it('navigates back to editing when "Edit Resume" is clicked', () => {
+  it('navigates back to /home when "Edit Resume" is clicked', () => {
     render(
       <MockProvider>
         <Display />
       </MockProvider>,
     );
 
-    const editBtn = screen.getByText('Edit Resume');
-    fireEvent.click(editBtn);
-
+    fireEvent.click(screen.getByText('Edit Resume'));
     expect(mockNavigate).toHaveBeenCalledWith('/home');
   });
 
-  it('triggers PDF download logic for standard templates', async () => {
+  it('triggers PDF download logic when Download as PDF is clicked', async () => {
     render(
       <MockProvider>
         <Display />
       </MockProvider>,
     );
 
-    const downloadBtn = screen.getByText('Download as PDF');
-    fireEvent.click(downloadBtn);
+    fireEvent.click(screen.getByText('Download as PDF'));
 
-    // Wait for async PDF generation mocks to be called
     await waitFor(() => {
       expect(mocks.html2canvas).toHaveBeenCalled();
       expect(mocks.jsPDF).toHaveBeenCalled();
     });
   });
 
-  it('updates font state when font selector changes', () => {
+  it('updates font and fires toast when font selector changes', () => {
     render(
       <MockProvider>
         <Display />
       </MockProvider>,
     );
 
-    // Locate font selector via option text
     const option = screen.getByText('Roboto');
     const select = option.closest('select');
-
     fireEvent.change(select, { target: { value: 'robotoFont' } });
 
-    // Verify toast notification confirms font change
     expect(toast.success).toHaveBeenCalledWith(
       expect.stringContaining('Roboto'),
     );
   });
 
-  it('hides buttons and controls when NOT on /resumeCrafted (Preview Mode)', () => {
-    // Override URL to simulate Home page (Preview Mode)
+  it('hides controls when not on /resumeCrafted', () => {
     delete window.location;
     window.location = {
       ...originalLocation,
@@ -209,12 +192,8 @@ describe('DisplayTemplate Component', () => {
       </MockProvider>,
     );
 
-    // Content should render, but controls should be hidden
-    expect(screen.getByText('Standard Template Content')).toBeInTheDocument();
     expect(screen.queryByText('Edit Resume')).not.toBeInTheDocument();
     expect(screen.queryByText('Download as PDF')).not.toBeInTheDocument();
-
-    const select = screen.queryByLabelText(/Select Template/i);
-    expect(select).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/Select Template/i)).not.toBeInTheDocument();
   });
 });

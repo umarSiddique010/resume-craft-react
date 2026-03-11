@@ -225,6 +225,7 @@
 }
 
 .personContacts,
+.personContacts span,
 .personAddress {
   font-size: 0.7rem;
   color: #8c8e83;
@@ -318,6 +319,7 @@
 }
 
 .workExperienceList > h4:nth-child(2) span,
+.workExperienceList > h4:nth-child(3) i,
 .educationList > h4:nth-child(2) span,
 .projectLinks,
 .certificationList > h4 > span {

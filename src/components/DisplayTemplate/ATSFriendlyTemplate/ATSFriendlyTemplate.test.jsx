@@ -9,7 +9,6 @@ vi.mock('@react-pdf/renderer', () => ({
   Page: ({ children }) => <div data-testid="pdf-page">{children}</div>,
   View: ({ children }) => <div data-testid="pdf-view">{children}</div>,
   Text: ({ children }) => <div data-testid="pdf-text">{children}</div>,
-  // Make create return the styles object passed to it, so 'styles.page' exists
   StyleSheet: { create: (styles) => styles },
 }));
 
@@ -35,15 +34,9 @@ describe('ATSFriendlyTemplate Component', () => {
 
     render(<ATSFriendly data={customData} />);
 
-    // Verify Name & Profession
     expect(screen.getByText('John ATS')).toBeInTheDocument();
     expect(screen.getByText('Backend Engineer')).toBeInTheDocument();
-
-    // Verify Contact Composition
-    expect(screen.getByText(/john@ats.com/)).toBeInTheDocument();
-    expect(screen.getByText(/555-0199/)).toBeInTheDocument();
-
-    // Verify Address Composition
+    expect(screen.getByText(/john@ats.com \| 555-0199/)).toBeInTheDocument();
     expect(
       screen.getByText(/101 Code Blvd, Tech City, Texas, 75001, USA/),
     ).toBeInTheDocument();
@@ -68,7 +61,10 @@ describe('ATSFriendlyTemplate Component', () => {
   it('renders work experience with correct date logic (Present vs End Date)', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { workExperienceFields: false },
+      skipField: {
+        ...resumeInitialState.skipField,
+        workExperienceFields: false,
+      },
       workExperienceFields: [
         {
           id: '1',
@@ -76,7 +72,9 @@ describe('ATSFriendlyTemplate Component', () => {
           companyName: 'Startup Inc',
           location: 'Remote',
           startDate: '2020',
-          isCurrentlyWorking: true, // Should show 'Present'
+          isCurrentlyWorking: true,
+          endDate: '',
+          jobType: '',
           achievements: 'Scaled DB',
         },
         {
@@ -85,8 +83,9 @@ describe('ATSFriendlyTemplate Component', () => {
           companyName: 'Big Corp',
           location: 'Office',
           startDate: '2018',
-          endDate: '2020', // Should show date
+          endDate: '2020',
           isCurrentlyWorking: false,
+          jobType: '',
           achievements: 'Fixed bugs',
         },
       ],
@@ -94,22 +93,18 @@ describe('ATSFriendlyTemplate Component', () => {
 
     render(<ATSFriendly data={customData} />);
 
-    expect(screen.getByText('Work Experience')).toBeInTheDocument();
-
-    // Check first job (Present)
-    expect(screen.getByText(/Senior Dev – Startup Inc/)).toBeInTheDocument();
-    expect(screen.getByText(/2020 – Present/)).toBeInTheDocument();
-
-    // Check second job (Past)
-    expect(screen.getByText(/Junior Dev – Big Corp/)).toBeInTheDocument();
-    expect(screen.getByText(/2018 – 2020/)).toBeInTheDocument();
+    expect(screen.getByText(/work experience/i)).toBeInTheDocument();
+    expect(screen.getByText('Senior Dev – Startup Inc')).toBeInTheDocument();
+    expect(screen.getByText(/Remote \| 2020 – Present/)).toBeInTheDocument();
+    expect(screen.getByText('Junior Dev – Big Corp')).toBeInTheDocument();
+    expect(screen.getByText(/Office \| 2018 – 2020/)).toBeInTheDocument();
   });
 
   // --- Education ---
   it('renders education section', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { educationFields: false },
+      skipField: { ...resumeInitialState.skipField, educationFields: false },
       educationFields: [
         {
           id: '1',
@@ -119,6 +114,7 @@ describe('ATSFriendlyTemplate Component', () => {
           endDate: '2019',
           isCurrentlyStudying: false,
           gpa: '3.9',
+          coursework: '',
         },
       ],
     };
@@ -126,16 +122,16 @@ describe('ATSFriendlyTemplate Component', () => {
     render(<ATSFriendly data={customData} />);
 
     expect(screen.getByText('Education')).toBeInTheDocument();
-    expect(screen.getByText(/BSc CS – State Univ/)).toBeInTheDocument();
+    expect(screen.getByText('BSc CS – State Univ')).toBeInTheDocument();
     expect(screen.getByText(/2015 – 2019/)).toBeInTheDocument();
     expect(screen.getByText(/GPA: 3.9/)).toBeInTheDocument();
   });
 
-  // --- Skill ---
+  // --- Skills ---
   it('renders skills as a comma-separated list', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { skillFields: false },
+      skipField: { ...resumeInitialState.skipField, skillFields: false },
       skillFields: [
         { id: '1', skill: 'Python' },
         { id: '2', skill: 'Django' },
@@ -146,15 +142,14 @@ describe('ATSFriendlyTemplate Component', () => {
     render(<ATSFriendly data={customData} />);
 
     expect(screen.getByText('Skills')).toBeInTheDocument();
-
-    expect(screen.getByText(/Python, Django, PostgreSQL/)).toBeInTheDocument();
+    expect(screen.getByText('Python, Django, PostgreSQL')).toBeInTheDocument();
   });
 
   // --- Projects ---
   it('renders projects and handles optional links', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { projectFields: false },
+      skipField: { ...resumeInitialState.skipField, projectFields: false },
       projectFields: [
         {
           id: '1',
@@ -162,7 +157,7 @@ describe('ATSFriendlyTemplate Component', () => {
           technologiesUsed: 'React',
           description: 'Cool app',
           projectLink: 'github.com/app',
-          liveDemoLink: '', // No live link
+          liveDemoLink: '',
         },
         {
           id: '2',
@@ -170,7 +165,7 @@ describe('ATSFriendlyTemplate Component', () => {
           technologiesUsed: 'HTML',
           description: 'Web',
           projectLink: '',
-          liveDemoLink: 'mysite.com', // Has live link
+          liveDemoLink: 'mysite.com',
         },
       ],
     };
@@ -178,15 +173,9 @@ describe('ATSFriendlyTemplate Component', () => {
     render(<ATSFriendly data={customData} />);
 
     expect(screen.getByText('Projects')).toBeInTheDocument();
-
-    // Project 1
     expect(screen.getByText('My App')).toBeInTheDocument();
     expect(screen.getByText('Link: github.com/app')).toBeInTheDocument();
-
-    // Project 2
     expect(screen.getByText('Live: mysite.com')).toBeInTheDocument();
-
-    // checking that it appears EXACTLY ONCE. This implies Project 1 didn't render it.
     expect(screen.getAllByText(/Live:/)).toHaveLength(1);
   });
 
@@ -194,14 +183,17 @@ describe('ATSFriendlyTemplate Component', () => {
   it('renders certifications with dates only if noDates is false', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { certificationFields: false },
+      skipField: {
+        ...resumeInitialState.skipField,
+        certificationFields: false,
+      },
       certificationFields: [
         {
           id: '1',
           certificationName: 'AWS',
           issuingOrganization: 'Amazon',
           issueDate: '2021',
-          expiryDate: '2024',
+          expiryDate: '2030-09-12',
           noDates: false,
           credential: '123',
         },
@@ -209,7 +201,9 @@ describe('ATSFriendlyTemplate Component', () => {
           id: '2',
           certificationName: 'Linux',
           issuingOrganization: 'FOSS',
-          noDates: true, // Should hide dates
+          issueDate: '',
+          expiryDate: '',
+          noDates: true,
           credential: '456',
         },
       ],
@@ -218,23 +212,19 @@ describe('ATSFriendlyTemplate Component', () => {
     render(<ATSFriendly data={customData} />);
 
     expect(screen.getByText('Certifications')).toBeInTheDocument();
-
-    // Cert 1 (With Dates)
-    expect(screen.getByText(/AWS – Amazon/)).toBeInTheDocument();
-    expect(screen.getByText(/2021 – 2024/)).toBeInTheDocument();
-    expect(screen.getByText(/Credential ID: 123/)).toBeInTheDocument();
-
-    // Cert 2 (No Dates)
-    expect(screen.getByText(/Linux – FOSS/)).toBeInTheDocument();
-    expect(screen.queryByText(/FOSS –/)).not.toBeInTheDocument(); // Ensure no partial renders
-    expect(screen.getByText(/Credential ID: 456/)).toBeInTheDocument();
+    expect(screen.getByText('AWS – Amazon')).toBeInTheDocument();
+    expect(screen.getByText(/2021 – 2030-09-12/)).toBeInTheDocument();
+    expect(screen.getByText('Credential ID: 123')).toBeInTheDocument();
+    expect(screen.getByText('Linux – FOSS')).toBeInTheDocument();
+    expect(screen.queryByText(/FOSS –/)).not.toBeInTheDocument();
+    expect(screen.getByText('Credential ID: 456')).toBeInTheDocument();
   });
 
-  // --- Awards---
+  // --- Awards ---
   it('renders awards section', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { awardFields: false },
+      skipField: { ...resumeInitialState.skipField, awardFields: false },
       awardFields: [
         {
           id: '1',
@@ -247,8 +237,8 @@ describe('ATSFriendlyTemplate Component', () => {
 
     render(<ATSFriendly data={customData} />);
 
-    expect(screen.getByText('Awards')).toBeInTheDocument();
-    expect(screen.getByText(/Hackathon Winner \(2023\)/)).toBeInTheDocument();
+    expect(screen.getByText('Award')).toBeInTheDocument();
+    expect(screen.getByText('Hackathon Winner (2023)')).toBeInTheDocument();
     expect(screen.getByText('First Place')).toBeInTheDocument();
   });
 
@@ -256,7 +246,7 @@ describe('ATSFriendlyTemplate Component', () => {
   it('renders languages section', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { languageFields: false },
+      skipField: { ...resumeInitialState.skipField, languageFields: false },
       languageFields: [
         { id: '1', language: 'Spanish', proficiencyLevel: 'Fluent' },
       ],
@@ -264,15 +254,15 @@ describe('ATSFriendlyTemplate Component', () => {
 
     render(<ATSFriendly data={customData} />);
 
-    expect(screen.getByText('Languages')).toBeInTheDocument();
-    expect(screen.getByText(/Spanish – Fluent/)).toBeInTheDocument();
+    expect(screen.getByText('Language')).toBeInTheDocument();
+    expect(screen.getByText('Spanish – Fluent')).toBeInTheDocument();
   });
 
   // --- Hobbies ---
   it('renders hobbies as a comma-separated list', () => {
     const customData = {
       ...resumeInitialState,
-      skipField: { hobbyFields: false },
+      skipField: { ...resumeInitialState.skipField, hobbyFields: false },
       hobbyFields: [
         { id: '1', hobby: 'Reading' },
         { id: '2', hobby: 'Chess' },
@@ -282,7 +272,7 @@ describe('ATSFriendlyTemplate Component', () => {
     render(<ATSFriendly data={customData} />);
 
     expect(screen.getByText('Hobbies')).toBeInTheDocument();
-    expect(screen.getByText(/Reading, Chess/)).toBeInTheDocument();
+    expect(screen.getByText('Reading, Chess')).toBeInTheDocument();
   });
 
   // --- Websites ---
@@ -301,19 +291,20 @@ describe('ATSFriendlyTemplate Component', () => {
 
     expect(screen.getByText('Websites')).toBeInTheDocument();
     expect(
-      screen.getByText(/LinkedIn: linkedin.com\/in\/me/),
+      screen.getByText('LinkedIn: linkedin.com/in/me'),
     ).toBeInTheDocument();
-    expect(screen.getByText(/GitHub: github.com\/me/)).toBeInTheDocument();
-    expect(screen.getByText(/Portfolio: me.com/)).toBeInTheDocument();
-    expect(screen.getByText('blog.com')).toBeInTheDocument(); // Standard text for extra links
+    expect(screen.getByText('GitHub: github.com/me')).toBeInTheDocument();
+    expect(screen.getByText('Portfolio: me.com')).toBeInTheDocument();
+    expect(screen.getByText('blog.com')).toBeInTheDocument();
   });
 
   // --- SKIP LOGIC ---
   it('skips rendering sections when configured in skipField', () => {
     const customData = {
       ...resumeInitialState,
-      profileSummaryInput: '', // Clear summary
+      profileSummaryInput: '',
       skipField: {
+        ...resumeInitialState.skipField,
         workExperienceFields: true,
         educationFields: true,
         skillFields: true,
@@ -323,19 +314,17 @@ describe('ATSFriendlyTemplate Component', () => {
         languageFields: true,
         hobbyFields: true,
       },
-      // Data exists but should not be shown
       skillFields: [{ id: '1', skill: 'Hidden' }],
     };
 
     render(<ATSFriendly data={customData} />);
 
-    // Titles should be absent
     expect(screen.queryByText('Work Experience')).not.toBeInTheDocument();
     expect(screen.queryByText('Education')).not.toBeInTheDocument();
     expect(screen.queryByText('Skills')).not.toBeInTheDocument();
     expect(screen.queryByText('Projects')).not.toBeInTheDocument();
     expect(screen.queryByText('Certifications')).not.toBeInTheDocument();
-    expect(screen.queryByText('Awards')).not.toBeInTheDocument();
+    expect(screen.queryByText('Award')).not.toBeInTheDocument();
     expect(screen.queryByText('Languages')).not.toBeInTheDocument();
     expect(screen.queryByText('Hobbies')).not.toBeInTheDocument();
   });

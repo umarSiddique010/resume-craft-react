@@ -1,34 +1,52 @@
 .profilePicBtn {
-  height: max-content;
-  width: max-content;
+  padding: 4% 20%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
-  background-color: #f7f7f7;
-  padding: 5px;
-  border: 0.5px solid #333;
+  background-color: transparent;
+  box-shadow: 0.5px 0.5px 10px 0.5px #0000001a;
+  border-radius: 5px;
+  background-color: #ffffffd8;
+  transition: all 0.4s ease-in-out;
+}
+
+.profilePicBtn:hover {
+  box-shadow: 0.5px 0.5px 10px 0.5px #800080;
 }
 
 .profilePicBtn label {
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #860786;
   cursor: pointer;
 }
 
 .fileWrapper {
+  position: relative;
   height: 120px;
   width: 120px;
   font-size: 0.9rem;
-  background-image: url('../../../assets/UserOutlineIcon.png');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fileWrapper input {
   display: none;
+}
+
+.uploadIcon {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.uploadIcon * {
+  fill: #860786;
+  color: #860786;
 }

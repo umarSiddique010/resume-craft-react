@@ -1,7 +1,5 @@
-import { useContext } from 'react';
-import { InputFieldContext } from '../../../context/UserInputContext/InputFieldContext';
 import styles from './StandardTemplate.module.css';
-import '../TemplateFonts.css';
+import templateFont from '../TemplateFonts.module.css';
 import { FaRegAddressCard } from 'react-icons/fa';
 import { MdOutlinePhone } from 'react-icons/md';
 import { MdOutlineMail } from 'react-icons/md';
@@ -11,6 +9,8 @@ import { FaGithub } from 'react-icons/fa';
 import { TbWorld } from 'react-icons/tb';
 import { BsFillSuitcaseLgFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { InputFieldContext } from '../../../context/UserInputContext/InputFieldContext';
 
 const StandardTemplate = ({ fontStyle }) => {
   const [stateField, dispatchField] = useContext(InputFieldContext);
@@ -60,7 +60,9 @@ const StandardTemplate = ({ fontStyle }) => {
   ];
 
   return (
-    <section className={`${styles.templateSection}  ${fontStyle}`}>
+    <section
+      className={`${styles.templateSection}  ${templateFont[fontStyle]}`}
+    >
       {/*--------------- LEFT PART --------------*/}
       <section className={styles.templateLeftPart}>
         {/* PROFILE PIC  */}
@@ -87,19 +89,14 @@ const StandardTemplate = ({ fontStyle }) => {
                 <li key={field.id}>
                   <div>{field.skill}</div>
                   <div className={styles.skillLevelBox}>
-                    {/* Basic Level Dots */}
                     <span className={basicSkillLevel(field.skillLevel)}></span>
                     <span className={basicSkillLevel(field.skillLevel)}></span>
-
-                    {/* Intermediate Level Dots */}
                     <span
                       className={intermediateSkillLevel(field.skillLevel)}
                     ></span>
                     <span
                       className={intermediateSkillLevel(field.skillLevel)}
                     ></span>
-
-                    {/* Advanced Level Dots */}
                     <span
                       className={advancedSkillLevel(field.skillLevel)}
                     ></span>
@@ -130,7 +127,6 @@ const StandardTemplate = ({ fontStyle }) => {
         )}
 
         {/* LANGUAGE FIELD  */}
-
         {!stateField.skipField.languageFields && (
           <div className={styles.languages}>
             <h2>
@@ -192,18 +188,43 @@ const StandardTemplate = ({ fontStyle }) => {
           <h3 className={styles.personProfession}>
             {personalInfoInput.profession}
           </h3>
-          <h4 className={styles.personContacts}>
-            <MdOutlinePhone className={styles.phoneIcon} />{' '}
-            {personalInfoInput.phoneNumber} |{' '}
-            <MdOutlineMail className={styles.emailIcon} />
-            {personalInfoInput.email}
-          </h4>
-          <h4 className={styles.personAddress}>
-            <FaRegAddressCard className={styles.addressIcon} />{' '}
-            {addressInfo.address}, {addressInfo.selectedCity},{' '}
-            {addressInfo.selectedStateName}, {addressInfo.zipCode},{' '}
-            {addressInfo.selectedCountryName}
-          </h4>
+
+          {(personalInfoInput.phoneNumber || personalInfoInput.email) && (
+            <h4 className={styles.personContacts}>
+              {personalInfoInput.phoneNumber && (
+                <>
+                  <MdOutlinePhone className={styles.phoneIcon} />{' '}
+                  <span>{personalInfoInput.phoneNumber}</span>
+                </>
+              )}
+              {personalInfoInput.email && (
+                <>
+                  {' '}
+                  | <MdOutlineMail className={styles.emailIcon} />
+                  <span>{personalInfoInput.email}</span>
+                </>
+              )}
+            </h4>
+          )}
+
+          {(addressInfo.address ||
+            addressInfo.selectedCity ||
+            addressInfo.selectedStateName ||
+            addressInfo.zipCode ||
+            addressInfo.selectedCountryName) && (
+            <h4 className={styles.personAddress}>
+              <FaRegAddressCard className={styles.addressIcon} />{' '}
+              {[
+                addressInfo.address,
+                addressInfo.selectedCity,
+                addressInfo.selectedStateName,
+                addressInfo.zipCode,
+                addressInfo.selectedCountryName,
+              ]
+                .filter(Boolean)
+                .join(', ')}
+            </h4>
+          )}
         </div>
 
         <section className={styles.rightMain}>
@@ -219,17 +240,39 @@ const StandardTemplate = ({ fontStyle }) => {
               <ul>
                 {stateField.workExperienceFields.map((field) => (
                   <li className={styles.workExperienceList} key={field.id}>
-                    <h3>
-                      {field.companyName} {' - '} {field.location}
-                    </h3>
-                    <h4>
-                      {field.jobTitle} |{' '}
-                      <span>
-                        {field.startDate} -{' '}
-                        {field.isCurrentlyWorking ? 'Present' : field.endDate}
-                      </span>
-                    </h4>
-                    <p>{field.achievements}</p>
+                    {(field.companyName || field.location) && (
+                      <h3>
+                        {field.companyName && field.companyName}{' '}
+                        {field.location && ' - ' + field.location}
+                      </h3>
+                    )}
+
+                    {(field.jobTitle ||
+                      field.startDate ||
+                      field.isCurrentlyWorking ||
+                      field.endDate) && (
+                      <h4>
+                        {field.jobTitle && field.jobTitle}
+                        {field.startDate && (
+                          <span>
+                            {' | '}
+                            {field.startDate}
+                            {field.isCurrentlyWorking
+                              ? ' - Present'
+                              : field.endDate
+                                ? ' - ' + field.endDate
+                                : ''}
+                          </span>
+                        )}
+                      </h4>
+                    )}
+                    {field.jobType && (
+                      <h4>
+                        <i>{field.jobType}</i>
+                      </h4>
+                    )}
+
+                    {field.achievements && <p>{field.achievements}</p>}
                   </li>
                 ))}
               </ul>
@@ -239,24 +282,31 @@ const StandardTemplate = ({ fontStyle }) => {
           {/* education */}
           {!stateField.skipField.educationFields && (
             <div className={styles.educations}>
-              <h2>
-                {stateField.educationFields.length > 1
-                  ? 'EDUCATION'
-                  : 'EDUCATION'}
-              </h2>
+              <h2>EDUCATION</h2>
               <hr className={styles.hrBreaker}></hr>
               <ul>
                 {stateField.educationFields.map((field) => (
                   <li className={styles.educationList} key={field.id}>
-                    <h3>{field.degreeName}</h3>
-                    <h4>
-                      {field.universityCollege} |{' '}
-                      <span>
-                        {field.startDate} -{' '}
-                        {field.isCurrentlyStudying ? 'Present' : field.endDate}
-                      </span>
-                    </h4>
-                    <p>{field.coursework}</p>
+                    {field.degreeName && <h3>{field.degreeName}</h3>}
+                    {(field.universityCollege ||
+                      field.startDate ||
+                      field.endDate ||
+                      field.isCurrentlyStudying) && (
+                      <h4>
+                        {field.universityCollege && field.universityCollege}
+                        {field.startDate && (
+                          <span>
+                            {' | '}
+                            {field.startDate}
+                            {' - '}
+                            {field.isCurrentlyStudying
+                              ? 'Present'
+                              : field.endDate}
+                          </span>
+                        )}
+                      </h4>
+                    )}
+                    {field.coursework && <p>{field.coursework}</p>}
                   </li>
                 ))}
               </ul>
@@ -273,26 +323,33 @@ const StandardTemplate = ({ fontStyle }) => {
               <ul>
                 {stateField.projectFields.map((field) => (
                   <li className={styles.projectList} key={field.id}>
-                    <h3>{field.projectName}</h3>
-                    <h4>{field.technologiesUsed}</h4>
-                    <Link
-                      to={field.projectLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.projectLinks}
-                    >
-                      <FaLink className={styles.linkIcon} /> {field.projectLink}
-                    </Link>
-                    <Link
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      to={field.liveDemoLink}
-                      className={styles.projectLinks}
-                    >
-                      <TbWorld className={styles.liveLink} />{' '}
-                      {field.liveDemoLink}
-                    </Link>
-                    <p>{field.description}</p>
+                    {field.projectName && <h3>{field.projectName}</h3>}
+                    {field.technologiesUsed && (
+                      <h4>{field.technologiesUsed}</h4>
+                    )}
+                    {field.projectLink && (
+                      <Link
+                        to={field.projectLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.projectLinks}
+                      >
+                        <FaLink className={styles.linkIcon} />{' '}
+                        {field.projectLink}
+                      </Link>
+                    )}
+                    {field.liveDemoLink && (
+                      <Link
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        to={field.liveDemoLink}
+                        className={styles.projectLinks}
+                      >
+                        <TbWorld className={styles.liveLink} />{' '}
+                        {field.liveDemoLink}
+                      </Link>
+                    )}
+                    {field.description && <p>{field.description}</p>}
                   </li>
                 ))}
               </ul>
@@ -311,16 +368,26 @@ const StandardTemplate = ({ fontStyle }) => {
               <ul>
                 {stateField.certificationFields.map((field) => (
                   <li className={styles.certificationList} key={field.id}>
-                    <h3>{field.certificationName}</h3>
-                    {!field.noDates && (
-                      <h4>
-                        {field.issueDate} -{' '}
-                        {new Date(field.expiryDate).getTime() > Date.now()
-                          ? field.expiryDate
-                          : 'Expired'}
-                      </h4>
+                    {field.certificationName && (
+                      <h3>{field.certificationName}</h3>
                     )}
-                    <p>Credential ID: {field.credential}</p>
+                    {!field.noDates &&
+                      (field.issueDate || field.expiryDate) && (
+                        <h4>
+                          {field.issueDate && field.issueDate}
+                          {field.expiryDate && (
+                            <span>
+                              {' - '}
+                              {new Date(field.expiryDate).getTime() > Date.now()
+                                ? field.expiryDate
+                                : 'Expired'}
+                            </span>
+                          )}
+                        </h4>
+                      )}
+                    {field.credential && (
+                      <p>Credential ID: {field.credential}</p>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -328,12 +395,10 @@ const StandardTemplate = ({ fontStyle }) => {
           )}
 
           {/* websites */}
-
           {!stateField.skipField.websiteFields && (
             <div className={styles.websites}>
               <h2>WEBSITES</h2>
               <hr className={styles.hrBreaker} />
-
               <div className={styles.websiteLinksContainer}>
                 {links.map(
                   (link, index) =>

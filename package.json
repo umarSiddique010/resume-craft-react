@@ -3,6 +3,8 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
+  "author": "Md Umar Siddique",
+  "description": "A client-side resume builder built with React 19 and Vite. Features 3 professional templates, ATS-friendly PDF export, real-time preview, custom fonts, a full Vitest test suite, GitHub Actions CI pipeline, and automated Vercel deployment.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,10 +19,6 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{css,scss,md,json}": "prettier --write"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.3.2",
@@ -60,5 +58,9 @@
     "prettier": "3.6.2",
     "vite": "^6.2.0",
     "vitest": "^4.0.18"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{css,scss,md,json}": "prettier --write"
   }
 }

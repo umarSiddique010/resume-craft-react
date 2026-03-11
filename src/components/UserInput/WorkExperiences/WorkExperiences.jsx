@@ -81,6 +81,30 @@ const WorkExperiences = () => {
           <div className={commonStyles.inputBox}>
             <label
               className={commonStyles.inputLabel}
+              htmlFor={`jobType-${field.id}`}
+            >
+              Enter Job Type{' '}
+              <i className={commonStyles.inputLabel}>
+                (e.g. Full-time, Part-time, Contract, Internship)
+              </i>{' '}
+              :
+            </label>
+            <input
+              className={commonStyles.inputField}
+              type="text"
+              placeholder="Job Type"
+              id={`jobType-${field.id}`}
+              name="jobType"
+              value={field.jobType}
+              onChange={(e) =>
+                handleChange(field.id, e.target.name, e.target.value)
+              }
+            />
+          </div>
+
+          <div className={commonStyles.inputBox}>
+            <label
+              className={commonStyles.inputLabel}
               htmlFor={`companyName-${field.id}`}
             >
               Enter Company Name:{' '}
@@ -103,7 +127,7 @@ const WorkExperiences = () => {
               className={commonStyles.inputLabel}
               htmlFor={`location-${field.id}`}
             >
-              Enter Location (City, Country):{' '}
+              Enter Location:
             </label>
             <input
               className={commonStyles.inputField}

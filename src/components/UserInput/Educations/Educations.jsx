@@ -64,7 +64,11 @@ const Educations = () => {
               className={commonStyles.inputLabel}
               htmlFor={`degreeName-${field.id}`}
             >
-              Enter Degree Name (e.g., “BSc in Computer Science”):{' '}
+              Enter Degree Name{' '}
+              <i className={commonStyles.inputLabel}>
+                (e.g., “BSc in Computer Science”)
+              </i>{' '}
+              :
             </label>
             <input
               className={commonStyles.inputField}
@@ -101,7 +105,10 @@ const Educations = () => {
 
           <div className={styles.dateWrapper}>
             <div className={commonStyles.inputBox}>
-              <label htmlFor={`startDate-${field.id}`}>
+              <label
+                htmlFor={`startDate-${field.id}`}
+                className={commonStyles.inputLabel}
+              >
                 Enter Start Date:{' '}
               </label>
               <input
@@ -178,7 +185,10 @@ const Educations = () => {
           </div>
 
           <div className={commonStyles.inputBox}>
-            <label htmlFor={`gpa-${field.id}`}>
+            <label
+              htmlFor={`gpa-${field.id}`}
+              className={commonStyles.inputLabel}
+            >
               Enter GPA (if applicable):{' '}
             </label>
             <input

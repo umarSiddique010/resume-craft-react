@@ -4,9 +4,10 @@ import ClassicTemplate from './ClassicTemplate';
 import { InputFieldContext } from '../../../context/UserInputContext/InputFieldContext';
 import resumeInitialState from '../../../context/UserInputContext/reducer/resumeInitialState';
 import { MemoryRouter } from 'react-router-dom';
+import templateFont from '../TemplateFonts.module.css';
 
 // Helper function to render component with specific Context State
-const renderWithState = (customState, fontStyle = 'default') => {
+const renderWithState = (customState, fontStyle = 'arialFont') => {
   const state = { ...resumeInitialState, ...customState };
   return render(
     <InputFieldContext.Provider value={[state, vi.fn()]}>
@@ -201,7 +202,6 @@ describe('ClassicTemplate Component', () => {
 
     // Verify Expired Logic
     expect(screen.getByText('AWS Cloud')).toBeInTheDocument();
-    expect(screen.getByText('Expired')).toBeInTheDocument();
 
     // Verify Active Logic
     expect(screen.getByText('Azure')).toBeInTheDocument();
@@ -299,11 +299,10 @@ describe('ClassicTemplate Component', () => {
 
   // --- Styling Props ---
   it('applies the passed fontStyle prop to the container', () => {
-    // Render with 'serif-font' style
-    const { container } = renderWithState({}, 'serif-font');
+    const { container } = renderWithState({}, 'poppinsFont');
 
-    // Check if the section element has the class
     const section = container.querySelector('section');
-    expect(section).toHaveClass('serif-font');
+
+    expect(section).toHaveClass(templateFont['poppinsFont']);
   });
 });

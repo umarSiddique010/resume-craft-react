@@ -222,7 +222,6 @@ describe('StandardTemplate Component', () => {
   // --- Conditional Skipping ---
   it('skips sections when configured', () => {
     const customState = {
-      profileSummaryInput: '', // Clear summary to avoid regex collisions
       skipField: {
         skillFields: true,
         awardFields: true,

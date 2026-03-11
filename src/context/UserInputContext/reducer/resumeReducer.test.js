@@ -5,6 +5,7 @@ import resumeInitialState from './resumeInitialState';
 
 describe('resumeReducer', () => {
   // --- SINGLE OBJECT UPDATES (Personal Info, Address,  Profile Summary and static website input.) ---
+
   //Personal Info
   it('updates Personal Info correctly', () => {
     const initialState = {

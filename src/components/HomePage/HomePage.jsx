@@ -5,6 +5,7 @@ import styles from './HomePage.module.css';
 const HomePage = () => {
   return (
     <main className={styles.homePage}>
+      <div className={styles.dots} />
       <UserInput />
       <Display />
     </main>

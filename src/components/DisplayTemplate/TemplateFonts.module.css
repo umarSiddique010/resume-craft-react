@@ -1,0 +1,47 @@
+.arialFont {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.sansSerifFont {
+  font-family: sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.robotoFont {
+  font-family: 'Roboto', sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
+
+.googleSansCodeFont {
+  font-family: 'Google Sans Code', sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.poppinsFont {
+  font-family: 'Poppins', sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.rubikDistressedFont {
+  font-family: 'Rubik Distressed', cursive !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.DeliusSwashCapsFont {
+  font-family: 'Delius Swash Caps', cursive !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  word-spacing: 3px;
+}
+
+.playwriteFont {
+  font-family: 'Playwrite NZ', cursive !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

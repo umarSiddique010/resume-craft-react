@@ -16,20 +16,21 @@
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 10%;
+  color: #ffffff;
 }
 
 .description {
   font-size: 1.2rem;
-  color: #1f2937;
+  color: #d6e7ff;
   margin-bottom: 0.5rem;
 }
 
 .instruction {
   font-size: 1.1rem;
-  color: #4b5563;
+  color: #ffffff;
 }
 
 .highlight {
   font-weight: 600;
-  color: #dc2626;
+  color: #ff4b4b;
 }

@@ -239,3 +239,15 @@ hobbies and websites
   padding: 0 2px;
   margin: 3px 0 0 0;
 }
+
+.contactInfo h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.contactIcon {
+  color: #214e5c;
+  fill: #214e5c;
+}

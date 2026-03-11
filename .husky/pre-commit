@@ -1,1 +1,7 @@
+#!/bin/sh
+
+echo "Running Prettier & ESLint (lint-staged)..."
 npx lint-staged
+
+echo "Running Unit Tests..."
+npx vitest run

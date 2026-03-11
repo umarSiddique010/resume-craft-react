@@ -1,7 +1,10 @@
 import { useContext } from 'react';
+import templateFont from '../TemplateFonts.module.css';
 import { InputFieldContext } from '../../../context/UserInputContext/InputFieldContext';
 import styles from './ClassicTemplate.module.css';
 import { Link } from 'react-router-dom';
+import { FaAddressCard, FaPhoneAlt } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 const ClassicTemplate = ({ fontStyle }) => {
   const [stateField, dispatchField] = useContext(InputFieldContext);
 
@@ -14,19 +17,55 @@ const ClassicTemplate = ({ fontStyle }) => {
   ];
 
   return (
-    <section className={`${styles.templateSection} ${fontStyle}`}>
+    <section className={`${styles.templateSection} ${templateFont[fontStyle]}`}>
       <section className={styles.header}>
         <div className={styles.name_Profession}>
           <h1>{personalInfo.fullName}</h1>
           <h2>{personalInfo.profession}</h2>
         </div>
         <div className={styles.contactInfo}>
-          <h3>{personalInfo.email}</h3> | <h3>{personalInfo.phoneNumber}</h3> |
-          <p>
-            {addressInfo.address}, {addressInfo.selectedCity},{' '}
-            {addressInfo.selectedStateName}, {addressInfo.zipCode},{' '}
-            {addressInfo.selectedCountryName}
-          </p>
+          {personalInfo.email && (
+            <h3>
+              <MdEmail size={14} className={styles.contactIcon} />
+              <span>{personalInfo.email}</span>
+            </h3>
+          )}
+          {personalInfo.phoneNumber && (
+            <>
+              {personalInfo.email && (
+                <span className={styles.separator}>|</span>
+              )}
+              <h3>
+                <FaPhoneAlt size={13} className={styles.contactIcon} />
+                <span>{personalInfo.phoneNumber}</span>
+              </h3>
+            </>
+          )}
+          {(addressInfo.address ||
+            addressInfo.selectedCity ||
+            addressInfo.selectedStateName ||
+            addressInfo.zipCode ||
+            addressInfo.selectedCountryName) && (
+            <>
+              {(personalInfo.email || personalInfo.phoneNumber) && (
+                <span className={styles.separator}>|</span>
+              )}
+              <h3>
+                <FaAddressCard size={13.5} className={styles.contactIcon} />
+                <span>
+                  {[
+                    addressInfo.address,
+                    addressInfo.selectedCity,
+                    addressInfo.selectedStateName,
+                    addressInfo.zipCode,
+                    addressInfo.selectedCountryName,
+                  ]
+                    .filter(Boolean)
+                    .join(', ')}
+                </span>
+              </h3>
+            </>
+          )}
         </div>
       </section>
       <section className={styles.body}>
@@ -48,16 +87,26 @@ const ClassicTemplate = ({ fontStyle }) => {
             <ul>
               {stateField.workExperienceFields.map((field) => (
                 <li key={field.id} className={styles.workExperienceItems}>
-                  <h3>
-                    <span>{field.jobTitle}</span>
-                    <span>{field.companyName}</span>
-                  </h3>
-                  <h4>{field.location}</h4>
-                  <h4>
-                    {field.startDate} -{' '}
-                    {field.isCurrentlyWorking ? 'Present' : field.endDate}
-                  </h4>
-                  <p>{field.achievements}</p>
+                  {(field.jobTitle || field.companyName) && (
+                    <h3>
+                      {field.jobTitle && <span>{field.jobTitle}</span>}
+                      {field.companyName && <span>{field.companyName}</span>}
+                    </h3>
+                  )}
+                  {field.jobType && (
+                    <h4>
+                      <i>{field.jobType}</i>
+                    </h4>
+                  )}
+                  {field.location && <h4>{field.location}</h4>}
+                  {field.startDate && (
+                    <h4>
+                      {field.startDate}
+                      {' - '}
+                      {field.isCurrentlyWorking ? 'Present' : field.endDate}
+                    </h4>
+                  )}
+                  {field.achievements && <p>{field.achievements}</p>}
                 </li>
               ))}
             </ul>
@@ -75,16 +124,23 @@ const ClassicTemplate = ({ fontStyle }) => {
             <ul>
               {stateField.educationFields.map((field) => (
                 <li key={field.id} className={styles.educationItems}>
-                  <h3>
-                    <span>{field.degreeName}</span>
-                    <span>{field.universityCollege}</span>
-                  </h3>
-                  <h4>GPA: {field.gpa}</h4>
-                  <h4>
-                    {field.startDate} -{' '}
-                    {field.isCurrentlyStudying ? 'Present' : field.endDate}
-                  </h4>
-                  <p>{field.coursework}</p>
+                  {(field.degreeName || field.universityCollege) && (
+                    <h3>
+                      {field.degreeName && <span>{field.degreeName}</span>}
+                      {field.universityCollege && (
+                        <span>{field.universityCollege}</span>
+                      )}
+                    </h3>
+                  )}
+                  {field.gpa && <h4>GPA: {field.gpa}</h4>}
+                  {field.startDate && (
+                    <h4>
+                      {field.startDate}
+                      {' - '}
+                      {field.isCurrentlyStudying ? 'Present' : field.endDate}
+                    </h4>
+                  )}
+                  {field.coursework && <p>{field.coursework}</p>}
                 </li>
               ))}
             </ul>
@@ -115,23 +171,27 @@ const ClassicTemplate = ({ fontStyle }) => {
             <ul>
               {stateField.projectFields.map((field) => (
                 <li key={field.id} className={styles.projectItems}>
-                  <h3>{field.projectName}</h3>
-                  <h4>{field.technologiesUsed}</h4>
-                  <Link
-                    to={field.projectLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Project Link: {field.projectLink}
-                  </Link>
-                  <Link
-                    to={field.liveDemoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Demo: {field.liveDemoLink}
-                  </Link>
-                  <p>{field.description}</p>
+                  {field.projectName && <h3>{field.projectName}</h3>}
+                  {field.technologiesUsed && <h4>{field.technologiesUsed}</h4>}
+                  {field.projectLink && (
+                    <Link
+                      to={field.projectLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Project Link: {field.projectLink}
+                    </Link>
+                  )}
+                  {field.liveDemoLink && (
+                    <Link
+                      to={field.liveDemoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Demo: {field.liveDemoLink}
+                    </Link>
+                  )}
+                  {field.description && <p>{field.description}</p>}
                 </li>
               ))}
             </ul>
@@ -150,18 +210,30 @@ const ClassicTemplate = ({ fontStyle }) => {
             <ul>
               {stateField.certificationFields.map((field) => (
                 <li key={field.id} className={styles.certificationItems}>
-                  <h3>
-                    <span>{field.certificationName}</span>
-                    <span>{field.issuingOrganization}</span>
-                  </h3>
-                  {!field.noDates && (
+                  {(field.certificationName || field.issuingOrganization) && (
+                    <h3>
+                      {field.certificationName && (
+                        <span>{field.certificationName}</span>
+                      )}
+                      {field.issuingOrganization && (
+                        <span>{field.issuingOrganization}</span>
+                      )}
+                    </h3>
+                  )}
+                  {!field.noDates && (field.issueDate || field.expiryDate) && (
                     <h4>
-                      {new Date(field.expiryDate).getTime() > Date.now()
-                        ? `${field.issueDate} - ${field.expiryDate}`
-                        : 'Expired'}
+                      {field.issueDate && field.issueDate}
+                      {field.expiryDate && (
+                        <>
+                          {' - '}
+                          {new Date(field.expiryDate).getTime() > Date.now()
+                            ? field.expiryDate
+                            : 'Expired'}
+                        </>
+                      )}
                     </h4>
                   )}
-                  <p>Credential ID: {field.credential}</p>
+                  {field.credential && <p>Credential ID: {field.credential}</p>}
                 </li>
               ))}
             </ul>
@@ -175,9 +247,9 @@ const ClassicTemplate = ({ fontStyle }) => {
             <ul>
               {stateField.awardFields.map((field) => (
                 <li key={field.id} className={styles.awardItems}>
-                  <h3>{field.awardName}</h3>
-                  <h4>{field.year}</h4>
-                  <p>{field.details}</p>
+                  {field.awardName && <h3>{field.awardName}</h3>}
+                  {field.year && <h4>{field.year}</h4>}
+                  {field.details && <p>{field.details}</p>}
                 </li>
               ))}
             </ul>
@@ -239,7 +311,8 @@ const ClassicTemplate = ({ fontStyle }) => {
             <ul>
               {stateField.languageFields.map((field) => (
                 <li key={field.id} className={styles.languageItems}>
-                  {field.language} - {field.proficiencyLevel}
+                  {field.language}
+                  {field.proficiencyLevel ? ` - ${field.proficiencyLevel}` : ''}
                 </li>
               ))}
             </ul>

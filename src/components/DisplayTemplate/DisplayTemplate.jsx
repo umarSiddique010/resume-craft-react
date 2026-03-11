@@ -10,12 +10,14 @@ import ATSFriendlyTemplate from './ATSFriendlyTemplate/ATSFriendlyTemplate';
 import { useNavigate } from 'react-router-dom';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import { toast } from 'react-toastify';
+import BoldAccentTemplate from './BoldAccentTemplate/BoldAccentTemplate';
 
 const Display = () => {
   const [stateField, dispatchField] = useContext(InputFieldContext);
-  const [templateState, setTemplateState] = useState(0);
-  const [fontStyleState, setFontStyleState] = useState('default');
+  const [templateState, setTemplateState] = useState('boldAccentTemplate');
+  const [fontStyleState, setFontStyleState] = useState('arialFont');
   const [hiddenBtnState, setHiddenBtnState] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const Navigate = useNavigate();
   const pdfRef = useRef();
 
@@ -25,10 +27,18 @@ const Display = () => {
     .join('-')
     .toLowerCase();
 
-  const templateArray = [
-    <StandardTemplate fontStyle={fontStyleState} />,
-    <ClassicTemplate fontStyle={fontStyleState} />,
-  ];
+  const templateArray = {
+    boldAccentTemplate: <BoldAccentTemplate fontStyle={fontStyleState} />,
+    standardTemplate: <StandardTemplate fontStyle={fontStyleState} />,
+    classicTemplate: <ClassicTemplate fontStyle={fontStyleState} />,
+    atsFriendlyTemplate: 'atsFriendlyTemplate',
+  };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile]);
 
   useEffect(() => {
     if (window.location.href.includes('/resumeCrafted')) {
@@ -41,16 +51,14 @@ const Display = () => {
   const selectTemplate = (e) => {
     toast.dismiss();
     const selectedTemplate = e.target.value;
-    if (selectedTemplate === 'atsFriendly') {
-      setTemplateState(null);
-      toast.info('ATS Friendly Template is selected');
-    } else if (selectedTemplate === 'classicTemplate') {
-      setTemplateState(1);
-      toast.info('Classic Template is selected');
-    } else {
-      setTemplateState(0);
-      toast.info('Standard Template is selected');
-    }
+
+    setTemplateState(selectedTemplate);
+
+    const extractedTemplateName = selectedTemplate
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, (c) => c.toUpperCase())
+      .trim();
+    toast.success(`${extractedTemplateName} is selected`);
   };
 
   const upperCaseFirstLetter = (string) => {
@@ -119,16 +127,20 @@ const Display = () => {
     <section
       className={`
         ${styles.displaySection}
-        ${styles.hideDisplay}
+        ${hiddenBtnState && styles.hideDisplay}
         ${!hiddenBtnState && styles.unhideDisplay}`}
     >
+      <div className={styles.dots} />
+
       <div className={styles.displayBtnWrapper}>
         {!hiddenBtnState && (
           <>
             {/* template font style */}
-            {templateState !== null && (
+            {templateState !== 'atsFriendlyTemplate' && (
               <div className={styles.selectsStyle}>
-                <label htmlFor="fontStyle">Font Style: </label>
+                <label className={styles.templateLabel} htmlFor="fontStyle">
+                  Font Style:{' '}
+                </label>
                 <select
                   onChange={handleChangeFont}
                   name="fontStyle"
@@ -138,12 +150,16 @@ const Display = () => {
                   <optgroup label="Select Font Style">
                     <option value="arialFont">Arial</option>
                     <option value="sansSerifFont">Sans Serif</option>
+                    <option value="googleSansCodeFont">Google Sans Code</option>
                     <option value="robotoFont">Roboto</option>
+                    <option value="poppinsFont">Poppins</option>
                     <option value="playwriteFont">Playwrite</option>
                     <option value="DeliusSwashCapsFont">
                       Delius Swash Caps Font
                     </option>
-                    <option value="bitcountSingleFont">Bitcount Single</option>
+                    <option value="rubikDistressedFont">
+                      Rubik Distressed
+                    </option>
                   </optgroup>
                 </select>
               </div>
@@ -152,18 +168,21 @@ const Display = () => {
             {/* Select Template */}
 
             <div className={styles.selectsStyle}>
-              <label htmlFor="templates">Select Template: </label>
+              <label className={styles.templateLabel} htmlFor="templates">
+                Select Template:{' '}
+              </label>
               <select
                 onChange={(e) => selectTemplate(e)}
                 name="templates"
                 id="templates"
                 className={styles.templateStylesChange}
               >
-                <optgroup label="Select Template">
-                  <option value="standard">Standard Template</option>
-                  <option value="classicTemplate">Classic Template</option>
-                  <option value="atsFriendly">ATS Friendly Template</option>
-                </optgroup>
+                <option value="boldAccentTemplate">Bold Accent Template</option>
+                <option value="standardTemplate">Standard Template</option>
+                <option value="classicTemplate">Classic Template</option>
+                <option value="atsFriendlyTemplate">
+                  ATS Friendly Template
+                </option>
               </select>
             </div>
 
@@ -174,7 +193,7 @@ const Display = () => {
 
             {/* Download as PDF Button */}
 
-            {templateState !== null && (
+            {templateState !== 'atsFriendlyTemplate' && (
               <button
                 className={styles.downloadBtn}
                 onClick={handleDownloadPdf}
@@ -183,7 +202,7 @@ const Display = () => {
               </button>
             )}
 
-            {templateState === null && (
+            {templateState === 'atsFriendlyTemplate' && (
               <PDFDownloadLink
                 className={styles.downloadBtn}
                 document={<ATSFriendlyTemplate data={stateField} />}
@@ -197,16 +216,28 @@ const Display = () => {
           </>
         )}
       </div>
-      {templateState !== null && (
+      {templateState !== 'atsFriendlyTemplate' && (
         <div className={styles.templateParent} ref={pdfRef}>
           {templateArray[templateState]}
         </div>
       )}
-      {templateState === null && (
-        <PDFViewer width="100%" height="1000">
-          <ATSFriendlyTemplate data={stateField} />
-        </PDFViewer>
-      )}
+
+      {templateState === 'atsFriendlyTemplate' &&
+        (isMobile ? (
+          <div className={styles.mobilePdfMessage}>
+            <h3>Preview Unavailable on Mobile</h3>
+            <br />
+            <p>
+              Mobile browsers cannot display live PDF previews. Please use the{' '}
+              <strong>Download ATS Template</strong> button above to view and
+              save your resume.
+            </p>
+          </div>
+        ) : (
+          <PDFViewer width="100%" height="1000">
+            <ATSFriendlyTemplate data={stateField} />
+          </PDFViewer>
+        ))}
     </section>
   );
 };

@@ -4,6 +4,7 @@ import styles from './PersonalInformation.module.css';
 import { SET_PERSONAL_INFO_INPUT } from '../../../context/UserInputContext/reducer/resumeTypes';
 import { useContext } from 'react';
 import { InputFieldContext } from '../../../context/UserInputContext/InputFieldContext';
+import { AiOutlineUpload } from 'react-icons/ai';
 
 const PersonalInformation = () => {
   const [stateField, dispatchField] = useContext(InputFieldContext);
@@ -65,6 +66,7 @@ const PersonalInformation = () => {
                 ref={fileInputRef}
                 onChange={handleChange}
               />
+              <AiOutlineUpload className={styles.uploadIcon} />
             </div>
 
             <label className={commonStyles.inputLabel} htmlFor="profilePic">
