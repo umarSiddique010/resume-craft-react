@@ -28,6 +28,7 @@
 [![Husky](https://img.shields.io/badge/Husky_Hooks-42B983?style=for-the-badge&logo=git&logoColor=white)](https://typicode.github.io/husky/)
 [![Lint-Staged](https://img.shields.io/badge/Lint--Staged-1572B6?style=for-the-badge&logo=git&logoColor=white)](https://github.com/lint-staged/lint-staged)
 [![Vercel](https://img.shields.io/badge/Vercel_Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions_+_Vercel-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/umarSiddique010/resume-craft-react/actions)
 
 </div>
 
@@ -35,7 +36,7 @@
 
 **Resume Craft** is a fully client-side resume builder built with **React 19** and **Vite**. Users instantly generate a professional PDF resume — **no backend, no login, and no data storage**. Since **privacy matters**, all data stays in the browser and never leaves the user's device.
 
-The project is engineered with a focus on code quality: a strict **Context + Reducer** state architecture, strong **Vitest** coverage across components, templates, and reducer logic, and an automated **Husky + Lint-Staged** pre-commit pipeline.
+The project is engineered with a focus on code quality: a strict **Context + Reducer** state architecture, strong **Vitest** coverage across components, templates, and reducer logic, an automated **Husky + Lint-Staged** pre-commit pipeline, and a **GitHub Actions CI/CD** pipeline that gates every production deploy behind passing tests and builds.
 
 ## Application Preview
 
@@ -88,14 +89,15 @@ This project treats testing as a first-class citizen, not an afterthought.
 - **Reducer Tests** — Comprehensive test cases validate the `resumeReducer` across core action paths including add, update, remove, and key edge cases.
 - **Mocking Strategy** — External dependencies like `@react-pdf/renderer`, `react-router-dom`, and `html2pdf.js` are mocked to ensure isolated, deterministic tests
 
-### 5. CI Pipeline
+### 5. CI/CD Pipeline
 
-Every push and PR to `main` must pass all three jobs in `.github/workflows/ci.yml` before merging:
+Every push to `main` triggers the full pipeline:
 
 - **Quality** — Runs `npm run check` (ESLint + Prettier) on every push and PR
 - **Test** — Runs `npm run coverage` (Vitest); build job won't start until this passes
-- **Build** — Runs `npm run build` only after tests pass (`needs: test`), verifying the production build is never broken
-- **Git Hooks (Husky + Lint-Staged)** — ESLint and Prettier also enforced locally on pre-commit, so issues are caught before they ever reach CI
+- **Build** — Runs `npm run build` only after tests pass (`needs: test`)
+- **Deploy** — Vercel auto-deploys to production only after all CI jobs pass — no broken build ever reaches production
+- **Git Hooks (Husky + Lint-Staged)** — ESLint and Prettier enforced locally on pre-commit, catching issues before they reach CI
 
 ### 6. Performance Optimizations
 
@@ -106,20 +108,19 @@ Every push and PR to `main` must pass all three jobs in `.github/workflows/ci.ym
 
 ## Tech Stack
 
-| Category             | Technology                    | Usage                                         |
-| :------------------- | :---------------------------- | :-------------------------------------------- |
-| **UI Library**       | **React 19**                  | Component architecture, hooks, context        |
-| **Build Tool**       | **Vite**                      | Dev server and production bundler             |
-| **State Management** | **Context + useReducer**      | Global resume state with typed actions        |
-| **PDF Generation**   | **@react-pdf/renderer**       | ATS-friendly true PDF rendering               |
-| **PDF Export**       | **html2pdf.js / html2canvas** | High-fidelity DOM-to-PDF download             |
-| **Routing**          | **React Router v7**           | Client-side page navigation                   |
-| **Location Data**    | **country-state-city**        | Address field dropdowns                       |
-| **Testing**          | **Vitest + RTL**              | Unit tests for all components and reducers    |
-| **Code Quality**     | **ESLint + Prettier**         | Enforced style and lint rules                 |
-| **Git Hooks**        | **Husky + Lint-Staged**       | Pre-commit validation pipeline                |
-| **CI**               | **GitHub Actions**            | Quality → Test → Build pipeline on every push |
-| **Deployment**       | **Vercel**                    | Edge deployment, auto-deploys on push to main |
+| Category             | Technology                    | Usage                                                        |
+| :------------------- | :---------------------------- | :----------------------------------------------------------- |
+| **UI Library**       | **React 19**                  | Component architecture, hooks, context                       |
+| **Build Tool**       | **Vite**                      | Dev server and production bundler                            |
+| **State Management** | **Context + useReducer**      | Global resume state with typed actions                       |
+| **PDF Generation**   | **@react-pdf/renderer**       | ATS-friendly true PDF rendering                              |
+| **PDF Export**       | **html2pdf.js / html2canvas** | High-fidelity DOM-to-PDF download                            |
+| **Routing**          | **React Router v7**           | Client-side page navigation                                  |
+| **Location Data**    | **country-state-city**        | Address field dropdowns                                      |
+| **Testing**          | **Vitest + RTL**              | Unit tests for all components and reducers                   |
+| **Code Quality**     | **ESLint + Prettier**         | Enforced style and lint rules                                |
+| **Git Hooks**        | **Husky + Lint-Staged**       | Pre-commit validation pipeline                               |
+| **CI/CD**            | **GitHub Actions + Vercel**   | Quality → Test → Build → Auto-deploy on every push to `main` |
 
 ## Local Development
 
