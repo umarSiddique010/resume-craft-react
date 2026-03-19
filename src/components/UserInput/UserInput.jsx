@@ -55,8 +55,8 @@ const UserInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Navigate('/resumeCrafted');
-    toast.success('Resume crafted Successfully');
+    Navigate('/resume');
+    toast.success('Resume crafted. Ready to share or download.');
   };
 
   const handleOnkeyDown = (e) => {

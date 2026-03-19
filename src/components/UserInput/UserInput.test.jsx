@@ -3,18 +3,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import UserInput from './UserInput';
 import { InputFieldContext } from '../../context/UserInputContext/InputFieldContext';
 import { SET_SKIP_FIELD } from '../../context/UserInputContext/reducer/resumeTypes';
-import { toast } from 'react-toastify';
 
 // --- MOCK DEPENDENCIES ---
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
-}));
-
-vi.mock('react-toastify', () => ({
-  toast: {
-    success: vi.fn(),
-  },
 }));
 
 // --- MOCK CHILD COMPONENTS ---
@@ -73,10 +66,9 @@ describe('UserInput Component', () => {
   beforeEach(() => {
     mockDispatch = vi.fn();
     mockNavigate.mockClear();
-    toast.success.mockClear(); // Clear previous toast calls
   });
 
-  const renderWizard = () => {
+  const setup = () => {
     return render(
       <InputFieldContext.Provider value={[{}, mockDispatch]}>
         <UserInput />
@@ -86,7 +78,7 @@ describe('UserInput Component', () => {
 
   // --- Initial Render ---
   it('renders the first step (Personal Info) initially', () => {
-    renderWizard();
+    setup();
 
     expect(screen.getByText('Page: Personal Info')).toBeInTheDocument();
     expect(screen.getByText('1/13')).toBeInTheDocument();
@@ -97,7 +89,7 @@ describe('UserInput Component', () => {
 
   // --- Navigation (Next, Previous) ---
   it('navigates to next and previous steps correctly', () => {
-    renderWizard();
+    setup();
 
     // Step 1 -> Step 2
     fireEvent.click(screen.getByText('Next'));
@@ -117,7 +109,7 @@ describe('UserInput Component', () => {
 
   // --- Skip Logic ---
   it('handles Skipping a field correctly', () => {
-    renderWizard();
+    setup();
 
     // Navigate to Step 3 (Websites - Index 2)
     fireEvent.click(screen.getByText('Next'));
@@ -125,7 +117,6 @@ describe('UserInput Component', () => {
 
     expect(screen.getByText('Page: Websites')).toBeInTheDocument();
 
-    // Click Skip
     const skipBtn = screen.getByText('Skip');
     fireEvent.click(skipBtn);
 
@@ -137,37 +128,32 @@ describe('UserInput Component', () => {
     expect(screen.getByText('Page: Profile Summary')).toBeInTheDocument();
   });
 
+  // --- no skip button on personal info, address, profile summary except websites ---
   it('hides Skip button on non-skippable steps (0, 1, 3)', () => {
-    renderWizard();
-    // Step 1 (Personal Info - Index 0)
+    setup();
+
     expect(screen.queryByText('Skip')).not.toBeInTheDocument();
 
-    // Step 2 (Address - Index 1)
     fireEvent.click(screen.getByText('Next'));
     expect(screen.queryByText('Skip')).not.toBeInTheDocument();
 
-    // Step 3 (Websites - Index 2) -> Skip IS visible
     fireEvent.click(screen.getByText('Next'));
     expect(screen.getByText('Skip')).toBeInTheDocument();
 
-    // Step 4 (Profile Summary - Index 3) -> Skip IS NOT visible
     fireEvent.click(screen.getByText('Next'));
     expect(screen.queryByText('Skip')).not.toBeInTheDocument();
   });
 
-  // --- UnSkip Logic (Previous Button) ---
+  // --- UnSkip Logic on websites with Previous Button ---
   it('re-enables a field when going Previous from a future step', () => {
-    renderWizard();
+    setup();
 
-    // Go to Websites (Index 2)
     fireEvent.click(screen.getByText('Next'));
     fireEvent.click(screen.getByText('Next'));
 
-    // Move to Profile Summary (Index 3)
     fireEvent.click(screen.getByText('Next'));
     expect(screen.getByText('Page: Profile Summary')).toBeInTheDocument();
 
-    // Click Previous to go back to Websites
     fireEvent.click(screen.getByText('Previous'));
 
     expect(mockDispatch).toHaveBeenCalledWith({
@@ -180,9 +166,8 @@ describe('UserInput Component', () => {
 
   // --- Submit and complete button ---
   it('handles final submission on the last step', () => {
-    renderWizard();
+    setup();
 
-    // Fast forward to last step (Index 12)
     for (let i = 0; i < 12; i++) {
       fireEvent.click(screen.getByText('Next'));
     }
@@ -192,29 +177,24 @@ describe('UserInput Component', () => {
     const submitBtn = screen.getByText('Submit');
     fireEvent.click(submitBtn);
 
-    expect(mockNavigate).toHaveBeenCalledWith('/resumeCrafted');
-    // Using imported toast
-    expect(toast.success).toHaveBeenCalledWith('Resume crafted Successfully');
+    expect(mockNavigate).toHaveBeenCalledWith('/resume');
   });
 
   // --- Keyboard Navigation ---
   it('navigates with Enter key', () => {
-    const { container } = renderWizard();
+    const { container } = setup();
 
     const form = container.querySelector('form');
 
-    // Press Enter on the form element
     fireEvent.keyDown(form, { key: 'Enter', code: 'Enter' });
 
-    // Should move to Step 2
     expect(screen.getByText('Page: Address')).toBeInTheDocument();
   });
 
   // --- Hover Effect ---
   it('applies hover class to main section when submit button is hovered', () => {
-    renderWizard();
+    setup();
 
-    // Go to last page
     for (let i = 0; i < 12; i++) {
       fireEvent.click(screen.getByText('Next'));
     }

@@ -87,7 +87,7 @@ describe('Awards Component', () => {
     // Check Heading
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
       /^Award$/,
-    ); // Exact match "Award"
+    );
 
     // Check Inputs
     expect(screen.getByPlaceholderText('Award Name')).toBeInTheDocument();

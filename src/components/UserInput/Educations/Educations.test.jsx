@@ -144,19 +144,19 @@ describe('Educations Component', () => {
 
     const checkbox = screen.getByLabelText('Currently studying here.');
 
-    // 1. Initially End Date is visible
+    // Initially End Date is visible
     expect(screen.getByLabelText(/Enter End Date/i)).toBeInTheDocument();
 
-    // 2. Check the box
+    // Check the box
     fireEvent.click(checkbox);
 
-    // 3. Verify End Date is REMOVED from DOM
+    // Verify End Date is REMOVED from DOM
     expect(screen.queryByLabelText(/Enter End Date/i)).not.toBeInTheDocument();
 
-    // 4. Uncheck the box
+    // Uncheck the box
     fireEvent.click(checkbox);
 
-    // 5. Verify End Date is BACK
+    // Verify End Date is BACK
     expect(screen.getByLabelText(/Enter End Date/i)).toBeInTheDocument();
   });
 
@@ -235,7 +235,7 @@ describe('Educations Component', () => {
 
     // Add multiple items
     fireEvent.click(addButton);
-    fireEvent.click(addButton); // Total 3
+    fireEvent.click(addButton);
     expect(screen.getAllByText(/Education #/i)).toHaveLength(3);
 
     // Click Remove All

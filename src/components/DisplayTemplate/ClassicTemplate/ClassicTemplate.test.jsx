@@ -224,7 +224,6 @@ describe('ClassicTemplate Component', () => {
 
     expect(screen.getByText('WEBSITES')).toBeInTheDocument();
 
-    // Check Content includes prefixes
     expect(screen.getByText(/LinkedIn:/i)).toBeInTheDocument();
     expect(screen.getByText(/Github:/i)).toBeInTheDocument();
     expect(screen.getByText(/Portfolio:/i)).toBeInTheDocument();

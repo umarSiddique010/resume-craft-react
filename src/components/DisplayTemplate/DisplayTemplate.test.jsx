@@ -145,7 +145,7 @@ describe('DisplayTemplate Component', () => {
     );
 
     fireEvent.click(screen.getByText('Edit Resume'));
-    expect(mockNavigate).toHaveBeenCalledWith('/home');
+    expect(mockNavigate).toHaveBeenCalledWith('/builder');
   });
 
   it('triggers PDF download logic when Download as PDF is clicked', async () => {

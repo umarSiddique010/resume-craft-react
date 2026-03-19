@@ -64,6 +64,7 @@ const Display = () => {
   const upperCaseFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
+
   const handleChangeFont = (e) => {
     const raw = e.target.value;
     setFontStyleState(raw);
@@ -80,7 +81,7 @@ const Display = () => {
   };
 
   const handleEditBtn = () => {
-    Navigate('/home');
+    Navigate('/builder');
     toast.info('Back to Editing');
   };
 

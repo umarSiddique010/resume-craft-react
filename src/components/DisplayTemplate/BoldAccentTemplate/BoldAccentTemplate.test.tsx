@@ -17,7 +17,7 @@ const renderWithState = (customState = {}, fontStyle = 'arialFont') => {
 };
 
 describe('BoldAccentTemplate Component', () => {
-  // ── HEADER ──────────────────────────────────────────────
+  // ── HEADER ──────────────────
   it('renders name, profession, phone, email and address', () => {
     renderWithState({
       personalInfoInput: {
@@ -99,7 +99,7 @@ describe('BoldAccentTemplate Component', () => {
     ).not.toBeInTheDocument();
   });
 
-  // ── SKIP FIELDS ──────────────────────────────────────────
+  // ── SKIP FIELDS ────────────────────────
   it('does not render any skipped sections', () => {
     renderWithState({
       skipField: {

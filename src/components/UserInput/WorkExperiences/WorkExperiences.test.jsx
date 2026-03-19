@@ -36,7 +36,7 @@ const mockReducer = (state, action) => {
           ...state.workExperienceFields,
           {
             ...initialWorkExp,
-            id: String(Date.now()), // unique fake ID
+            id: String(Date.now()),
             itemNumber: state.workExperienceFields.length + 1,
           },
         ],
@@ -145,19 +145,19 @@ describe('WorkExperiences Component', () => {
 
     const checkbox = screen.getByLabelText('Currently working here.');
 
-    // 1. Initially visible
+    // Initially visible
     expect(screen.getByLabelText(/Enter End Date/i)).toBeInTheDocument();
 
-    // 2. Click Checkbox
+    // Click Checkbox
     fireEvent.click(checkbox);
 
-    // 3. Verify End Date is GONE
+    // Verify End Date is GONE
     expect(screen.queryByLabelText(/Enter End Date/i)).not.toBeInTheDocument();
 
-    // 4. Uncheck
+    // Uncheck
     fireEvent.click(checkbox);
 
-    // 5. Verify End Date is BACK
+    // Verify End Date is BACK
     expect(screen.getByLabelText(/Enter End Date/i)).toBeInTheDocument();
   });
 
@@ -188,10 +188,10 @@ describe('WorkExperiences Component', () => {
       </MockInputProvider>,
     );
 
-    // 1 Item: Hidden
+    // Item: Hidden
     expect(screen.queryByText('Remove Experience')).not.toBeInTheDocument();
 
-    // 2 Items: Visible
+    // Items: Visible
     fireEvent.click(screen.getByText('Add Experience'));
     const removeButtons = screen.getAllByText('Remove Experience');
     expect(removeButtons).toHaveLength(2);

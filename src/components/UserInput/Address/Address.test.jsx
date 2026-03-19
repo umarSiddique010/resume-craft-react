@@ -193,7 +193,7 @@ describe('Address Component', () => {
       </MockInputProvider>,
     );
 
-    // 1. Select US -> NY -> New York City
+    // Select US -> NY -> New York City
     fireEvent.change(screen.getByLabelText(/Select your country/i), {
       target: { value: 'US' },
     });
@@ -208,18 +208,16 @@ describe('Address Component', () => {
     fireEvent.change(citySelect, { target: { value: 'New York City' } });
     expect(citySelect).toHaveValue('New York City');
 
-    // 2. Change Country to 'India' (trigger reset)
+    // Change Country to 'India' (trigger reset)
     fireEvent.change(screen.getByLabelText(/Select your country/i), {
       target: { value: 'IN' },
     });
 
-    // 3. Verify resets happen
+    // Verify resets happen
     await waitFor(() => {
-      // State resets to "Select your state" because that matches the component logic
       const stateSelect = screen.getByLabelText(/Select your state/i);
       expect(stateSelect).toHaveValue('Select your state');
 
-      // City resets: it defaults to the first option "Select your city".
       const citySelectRef = screen.getByLabelText(/Select your city/i);
       expect(citySelectRef).toHaveValue('Select your city');
     });
