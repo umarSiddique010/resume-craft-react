@@ -106,19 +106,6 @@ Every push to `main` triggers the full pipeline:
 - **Font Preloading** — Critical fonts preloaded in `index.html` via `<link rel="preload">`
 - **Local Fonts Only** — All fonts are self-hosted `woff2` files; no external CDN dependency
 
-### 7. Performance & Web Vitals (Lighthouse)
-
-The application balances heavy client-side PDF generation with a responsive user experience. Route-level code splitting and Vite manual chunking keep the core UI highly interactive while deferring heavy libraries.
-
-| Metric             | Mobile (Slow 4G) | Desktop |
-| :----------------- | :--------------: | :-----: |
-| **Performance**    |        72        |   94    |
-| **Accessibility**  |       100        |   100   |
-| **Best Practices** |       100        |   100   |
-| **SEO**            |       100        |   100   |
-
-> **Note:** Scores reflect the inclusion of client-side PDF engines and custom fonts. Heavy dependencies are lazy-loaded to avoid blocking the initial render.
-
 ## Tech Stack
 
 | Category             | Technology                    | Usage                                                        |
