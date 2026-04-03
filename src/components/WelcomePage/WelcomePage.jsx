@@ -20,7 +20,7 @@ const WelcomePage = () => {
           <li>Simple and easy to use interface</li>
         </ul>
 
-        <Link to="/home" className={styles.startBtn}>
+        <Link to="/builder" className={styles.startBtn}>
           Let&apos;s Craft
         </Link>
         <Link

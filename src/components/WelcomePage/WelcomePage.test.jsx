@@ -36,7 +36,7 @@ describe('WelcomePage', () => {
 
     const startBtn = screen.getByRole('link', { name: /Let's Craft/i });
     expect(startBtn).toBeInTheDocument();
-    expect(startBtn).toHaveAttribute('href', '/home');
+    expect(startBtn).toHaveAttribute('href', '/builder');
   });
 
   it('renders the portfolio footer link correctly', () => {
